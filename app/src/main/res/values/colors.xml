@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="kirmizi">#fc5e32</color>
+    <color name="turuncu">#ff7d4a</color>
+    <color name="mavi">#1ea4e9</color>
+    <color name="sari">#ffd45e</color>
+    <color name="sari3">#ffbe3b</color>
+</resources>
