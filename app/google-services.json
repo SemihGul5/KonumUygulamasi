@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "179482277569",
+    "project_id": "etkinlikdavet-1002d",
+    "storage_bucket": "etkinlikdavet-1002d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179482277569:android:67a91a2f9e9196799b0640",
+        "android_client_info": {
+          "package_name": "com.abrebo.konumuygulamasi.ui"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIq1oq-849XZihK0RT4IOYbIhgx2JsD0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
