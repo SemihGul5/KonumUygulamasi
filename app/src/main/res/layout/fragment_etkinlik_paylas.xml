@@ -13,7 +13,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.EtkinlikPaylasFragment" >
+        tools:context=".ui.fragments.EtkinlikPaylasFragment" >
 
         <ImageView
             android:id="@+id/imageViewCheckPass"

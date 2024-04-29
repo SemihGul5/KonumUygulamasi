@@ -1,4 +1,4 @@
-package com.abrebo.konumuygulamasi.ui;
+package com.abrebo.konumuygulamasi.ui.fragments;
 
 import android.os.Bundle;
 
@@ -9,23 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.abrebo.konumuygulamasi.R;
-import com.abrebo.konumuygulamasi.databinding.FragmentGirisYapBinding;
+import com.abrebo.konumuygulamasi.databinding.FragmentMesajListesiBinding;
 
-public class GirisYapFragment extends Fragment {
-    private FragmentGirisYapBinding binding;
-
+public class MesajListesiFragment extends Fragment {
+    private FragmentMesajListesiBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding=FragmentGirisYapBinding.inflate(inflater, container, false);
-
-
-
-
-
-
-
+        binding=FragmentMesajListesiBinding.inflate(inflater, container, false);
 
 
 

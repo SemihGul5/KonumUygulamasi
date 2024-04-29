@@ -1,4 +1,4 @@
-package com.abrebo.konumuygulamasi.ui;
+package com.abrebo.konumuygulamasi.ui.fragments;
 
 import android.os.Bundle;
 
@@ -9,16 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.abrebo.konumuygulamasi.R;
-import com.abrebo.konumuygulamasi.databinding.FragmentFavorilerimBinding;
+import com.abrebo.konumuygulamasi.databinding.FragmentGeriBildirimBinding;
 
-public class FavorilerimFragment extends Fragment {
-    private FragmentFavorilerimBinding binding;
-
+public class GeriBildirimFragment extends Fragment {
+    private FragmentGeriBildirimBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding=FragmentFavorilerimBinding.inflate(inflater, container, false);
+        binding=FragmentGeriBildirimBinding.inflate(inflater, container, false);
 
 
 

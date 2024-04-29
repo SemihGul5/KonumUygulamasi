@@ -1,4 +1,4 @@
-package com.abrebo.konumuygulamasi.ui;
+package com.abrebo.konumuygulamasi;
 
 import androidx.appcompat.app.AppCompatActivity;
 

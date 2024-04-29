@@ -7,20 +7,28 @@
 
     <fragment
         android:id="@+id/girisYapFragment"
-        android:name="com.abrebo.konumuygulamasi.ui.GirisYapFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.GirisYapFragment"
         android:label="fragment_giris_yap"
         tools:layout="@layout/fragment_giris_yap" >
         <action
             android:id="@+id/action_girisYapFragment_to_kayitOlFragment"
             app:destination="@id/kayitOlFragment" />
+        <action
+            android:id="@+id/action_girisYapFragment_to_anaSayfaMainActivity"
+            app:destination="@id/anaSayfaMainActivity" />
     </fragment>
     <fragment
         android:id="@+id/kayitOlFragment"
-        android:name="com.abrebo.konumuygulamasi.ui.KayitOlFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.KayitOlFragment"
         tools:layout="@layout/fragment_kayit_ol"
         android:label="KayitOlFragment" >
         <action
             android:id="@+id/action_kayitOlFragment_to_girisYapFragment"
             app:destination="@id/girisYapFragment" />
     </fragment>
+    <activity
+        android:id="@+id/anaSayfaMainActivity"
+        android:name="com.abrebo.konumuygulamasi.AnaSayfaMainActivity"
+        android:label="activity_ana_sayfa_main"
+        tools:layout="@layout/activity_ana_sayfa_main" />
 </navigation>

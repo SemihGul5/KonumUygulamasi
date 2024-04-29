@@ -1,4 +1,4 @@
-package com.abrebo.konumuygulamasi.ui;
+package com.abrebo.konumuygulamasi.ui.fragments;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -16,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -95,6 +96,10 @@ public class EtkinlikPaylasFragment extends Fragment {
         //kaydet butonu tıklanması
         binding.buttonEtkinlikPaylas.setOnClickListener(view -> {
             etlinlikPaylas(view);
+        });
+        // konum eklemeye tıklanması
+        binding.imageViewKonum.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_etkinlikPaylasFragment_to_mapsFragmentEtkinlikPaylas);
         });
 
         return binding.getRoot();

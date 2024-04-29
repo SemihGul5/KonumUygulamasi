@@ -1,4 +1,4 @@
-package com.abrebo.konumuygulamasi.ui;
+package com.abrebo.konumuygulamasi.ui.fragments;
 
 import android.os.Bundle;
 
@@ -9,15 +9,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.abrebo.konumuygulamasi.R;
-import com.abrebo.konumuygulamasi.databinding.FragmentGeriBildirimBinding;
+import com.abrebo.konumuygulamasi.databinding.FragmentGirisYapBinding;
 
-public class GeriBildirimFragment extends Fragment {
-    private FragmentGeriBildirimBinding binding;
+public class GirisYapFragment extends Fragment {
+    private FragmentGirisYapBinding binding;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding=FragmentGeriBildirimBinding.inflate(inflater, container, false);
+        binding=FragmentGirisYapBinding.inflate(inflater, container, false);
+
+
+
+
+
+
 
 
 
