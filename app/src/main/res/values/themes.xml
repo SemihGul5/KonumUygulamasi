@@ -3,9 +3,9 @@
     <style name="Base.Theme.KonumUygulamasi" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:statusBarColor">@color/sari3</item>
-        <item name="colorPrimary">@color/sari3</item>
-        <item name="colorPrimaryVariant">@color/sari3</item>
+        <item name="android:statusBarColor">@color/anaRenk</item>
+        <item name="colorPrimary">@color/anaRenk</item>
+        <item name="colorPrimaryVariant">@color/anaRenk</item>
         <item name="colorSecondaryContainer">#79D1D0D0</item>
     </style>
 
