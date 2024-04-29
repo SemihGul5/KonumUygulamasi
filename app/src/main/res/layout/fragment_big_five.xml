@@ -1,0 +1,1017 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.BigFiveFragment" >
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbarAnket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:fontFamily="@font/roboto"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:titleTextColor="@color/white" />
+
+    <TextView
+        android:id="@+id/anketDurumText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Test durumu: " />
+
+    <TextView
+        android:id="@+id/anketDurumText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_margin="8dp"
+        android:fontFamily="@font/roboto"
+        android:layout_marginStart="8dp"
+        android:text="Lütfen aşağıdaki cümlelere, kendinizi değerlendirerek 1 ile 5 arasında puan verin. Bu testin 1 kere yapılacağını unutmayın." />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/kisilikLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/soru_ext1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Partinin ruhu benimdir" />
+
+            <SeekBar
+                android:id="@+id/ext1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_ext2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/roboto"
+                android:text="Çok konuşmam" />
+
+            <SeekBar
+                android:id="@+id/ext2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_ext3"
+                android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="İnsanlar arasında kendimi rahat hissederim" />
+
+            <SeekBar
+                android:id="@+id/ext3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_ext4"
+                android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Arka planda kalırım" />
+
+            <SeekBar
+                android:id="@+id/ext4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_ext5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Konuşmaları başlatırım" />
+
+            <SeekBar
+                android:id="@+id/ext5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_ext6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Söyleyecek pek bir şeyim yok" />
+
+            <SeekBar
+                android:id="@+id/ext6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_ext7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Partilerde birçok farklı insanla konuşurum" />
+
+            <SeekBar
+                android:id="@+id/ext7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_ext8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Dikkat çekmeyi sevmem" />
+
+            <SeekBar
+                android:id="@+id/ext8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_ext9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="İlgilinin odağı olmaktan rahatsız olmam" />
+
+            <SeekBar
+                android:id="@+id/ext9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_ext10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Yabancıların yanında sessizim." />
+
+            <SeekBar
+                android:id="@+id/ext10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="8dp"
+                android:background="@color/black" />
+
+
+
+
+            <TextView
+                android:id="@+id/soru_est1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="8dp"
+                android:text="Kolayca stres olurum" />
+
+            <SeekBar
+                android:id="@+id/EST1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_est2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Genellikle rahatım" />
+
+            <SeekBar
+                android:id="@+id/EST2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_est3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Birçok şey hakkında endişelenirim" />
+
+            <SeekBar
+                android:id="@+id/EST3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_est4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Nadiren üzgün hissederim" />
+
+            <SeekBar
+                android:id="@+id/EST4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_est5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Kolayca rahatsız olurum" />
+
+            <SeekBar
+                android:id="@+id/EST5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_est6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Kolayca sinirlenirim" />
+
+            <SeekBar
+                android:id="@+id/EST6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_est7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Ruh halim sık sık değişir" />
+
+            <SeekBar
+                android:id="@+id/EST7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_est8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Sık sık ruh halim değişir" />
+
+            <SeekBar
+                android:id="@+id/EST8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_est9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Kolayca rahatsız olurum" />
+
+            <SeekBar
+                android:id="@+id/EST9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_est10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Sık sık üzgün hissederim" />
+
+            <SeekBar
+                android:id="@+id/EST10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="8dp"
+                android:background="@color/black" />
+
+
+
+
+            <TextView
+                android:id="@+id/soru_agr1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Başkaları için çok az endişe duyarım" />
+
+            <SeekBar
+                android:id="@+id/agr1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_agr2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="İnsanlarla ilgilenirim" />
+
+            <SeekBar
+                android:id="@+id/agr2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_agr3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="İnsanları aşağılarım" />
+
+            <SeekBar
+                android:id="@+id/agr3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_agr4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Başkalarının duygularına empati duyarım" />
+
+            <SeekBar
+                android:id="@+id/agr4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_agr5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Başkalarının sorunlarıyla ilgilenmem" />
+
+            <SeekBar
+                android:id="@+id/agr5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_agr6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Yumuşak bir kalbim vardır" />
+
+            <SeekBar
+                android:id="@+id/agr6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_agr7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Diğer insanlarla gerçekten ilgilenmem" />
+
+            <SeekBar
+                android:id="@+id/agr7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_agr8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Başkalarına zaman ayırırım" />
+
+            <SeekBar
+                android:id="@+id/agr8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_agr9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Başkalarının duygularını hissederim" />
+
+            <SeekBar
+                android:id="@+id/agr9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_agr10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="İnsanların kendilerini rahat hissetmelerini sağlarım" />
+
+            <SeekBar
+                android:id="@+id/agr10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="8dp"
+                android:background="@color/black" />
+
+
+
+
+            <TextView
+                android:id="@+id/soru_csn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="8dp"
+                android:text="Her zaman hazırlıklı olurum" />
+
+            <SeekBar
+                android:id="@+id/csn1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_csn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Eşyalarımı ortalıkta bırakırım" />
+
+            <SeekBar
+                android:id="@+id/csn2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_csn3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Detaylara dikkat ederim" />
+
+            <SeekBar
+                android:id="@+id/csn3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_csn4"
+                android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Her şeyi berbat ederim" />
+
+            <SeekBar
+                android:id="@+id/csn4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_csn5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Ev işlerini hemen hallederim" />
+
+            <SeekBar
+                android:id="@+id/csn5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_csn6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Çoğu zaman her şeyi yerine koymayı unuturum" />
+
+            <SeekBar
+                android:id="@+id/csn6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_csn7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Düzeni severim" />
+
+            <SeekBar
+                android:id="@+id/csn7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_csn8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Sorumluluklarımdan kaçarım" />
+
+            <SeekBar
+                android:id="@+id/csn8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_csn9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Bir programa uyarım" />
+
+            <SeekBar
+                android:id="@+id/csn9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_csn10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="İşimde titizimdir" />
+
+            <SeekBar
+                android:id="@+id/csn10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="8dp"
+                android:background="@color/black" />
+
+
+
+
+            <TextView
+                android:id="@+id/soru_opn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Zengin bir kelime dağarcığına sahibim" />
+
+            <SeekBar
+                android:id="@+id/opn1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_opn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Soyut fikirleri anlamakta zorlanırım" />
+
+            <SeekBar
+                android:id="@+id/opn2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_opn3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Canlı bir hayal gücüm vardır" />
+
+            <SeekBar
+                android:id="@+id/opn3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_opn4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Soyut fikirlerle ilgilenmem" />
+
+            <SeekBar
+                android:id="@+id/opn4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_opn5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Mükemmel fikirlerim vardır" />
+
+            <SeekBar
+                android:id="@+id/opn5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_opn6"
+                android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="İyi bir hayal gücüm yoktur" />
+
+            <SeekBar
+                android:id="@+id/opn6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_opn7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Her şeyi hızlıca anlarım" />
+
+            <SeekBar
+                android:id="@+id/opn7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_opn8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Zor kelimeler kullanırım" />
+
+            <SeekBar
+                android:id="@+id/opn8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_opn9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Olaylar üzerinde düşünerek zaman harcarım" />
+
+            <SeekBar
+                android:id="@+id/opn9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/soru_opn10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Fikirlerle doluyumdur" />
+
+            <SeekBar
+                android:id="@+id/opn10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:progressTint="@color/yesil"
+                android:thumbTint="@color/yesil"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/kisilikTestButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
+                android:text="KAYDET"
+                android:background="@color/yesil"
+                android:layout_margin="32dp"
+                ></Button>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
