@@ -150,7 +150,7 @@ public class EtkinlikPaylasFragment extends Fragment {
 
 
                     //firebase koleksiyonuna yükleme işlemi ve sonucunun ne olduğunu değerlendirme
-                    firebaseFirestore.collection("kullanici_etkinlikleri")
+                    firebaseFirestore.collection("etkinlikler")
                             .add(postData)
                             .addOnSuccessListener(documentReference -> {
                         Toast.makeText(getContext(), "Paylaşıldı", Toast.LENGTH_SHORT).show();

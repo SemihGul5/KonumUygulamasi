@@ -141,6 +141,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="128dp"
             android:layout_marginEnd="32dp"
             android:backgroundTint="@color/anaRenk"
             android:text="KAYDET"
@@ -159,6 +160,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbarEtkinlikEkle" />
+
+        <Button
+            android:id="@+id/buttonSaat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="533dp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            tools:layout_editor_absoluteX="231dp"
+            tools:layout_editor_absoluteY="533dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

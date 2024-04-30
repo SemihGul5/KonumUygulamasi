@@ -10,12 +10,15 @@ public class Etkinlik {
     private String boylam;
     private String email;
     private String paylasildi_mi;
+    private String tarih;
+    private String saat;
+
 
     public Etkinlik() {
     }
 
     public Etkinlik(String foto, String ad, String tur, String konum, String aciklama, String enlem, String boylam,String email,
-                    String paylasildi_mi) {
+                    String paylasildi_mi,String tarih,String saat) {
         this.foto = foto;
         this.ad = ad;
         this.tur = tur;
@@ -25,6 +28,8 @@ public class Etkinlik {
         this.boylam = boylam;
         this.email=email;
         this.paylasildi_mi=paylasildi_mi;
+        this.tarih=tarih;
+        this.saat=saat;
     }
 
     public String getFoto() {
@@ -97,5 +102,21 @@ public class Etkinlik {
 
     public void setPaylasildi_mi(String paylasildi_mi) {
         this.paylasildi_mi = paylasildi_mi;
+    }
+
+    public String getTarih() {
+        return tarih;
+    }
+
+    public void setTarih(String tarih) {
+        this.tarih = tarih;
+    }
+
+    public String getSaat() {
+        return saat;
+    }
+
+    public void setSaat(String saat) {
+        this.saat = saat;
     }
 }
