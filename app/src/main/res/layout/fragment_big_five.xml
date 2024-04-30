@@ -12,11 +12,12 @@
         android:id="@+id/materialToolbarAnket"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/colorSecondary"
         android:fontFamily="@font/roboto"
+        android:textAlignment="center"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@color/black" />
 
     <TextView
         android:id="@+id/anketDurumText"
@@ -207,8 +208,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -225,8 +226,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
 
@@ -255,8 +256,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -273,8 +274,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -291,8 +292,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -309,8 +310,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -327,8 +328,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -345,8 +346,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -363,8 +364,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -381,8 +382,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -399,8 +400,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -417,8 +418,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
 
@@ -449,8 +450,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -467,8 +468,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -485,8 +486,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -503,8 +504,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -521,8 +522,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -539,8 +540,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -557,8 +558,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -575,8 +576,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -593,8 +594,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -611,8 +612,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
 
@@ -642,8 +643,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -660,8 +661,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -678,8 +679,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -696,8 +697,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -714,8 +715,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -732,8 +733,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -750,8 +751,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -768,8 +769,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -786,8 +787,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -804,8 +805,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
 
@@ -834,8 +835,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -852,8 +853,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -870,8 +871,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -888,8 +889,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -906,8 +907,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -924,8 +925,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -942,8 +943,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -960,8 +961,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -978,8 +979,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
             <TextView
@@ -996,8 +997,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="5"
-                android:progressTint="@color/yesil"
-                android:thumbTint="@color/yesil"
+                android:progressTint="@color/anaRenk"
+                android:thumbTint="@color/anaRenk"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
 
@@ -1007,7 +1008,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto"
                 android:text="KAYDET"
-                android:background="@color/yesil"
+                android:background="@color/anaRenk"
                 android:layout_margin="32dp"
                 ></Button>
 

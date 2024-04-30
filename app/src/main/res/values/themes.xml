@@ -6,6 +6,7 @@
         <item name="android:statusBarColor">@color/anaRenk</item>
         <item name="colorPrimary">@color/anaRenk</item>
         <item name="colorPrimaryVariant">@color/anaRenk</item>
+        <item name="colorSecondary">@color/white</item>
         <item name="colorSecondaryContainer">#79D1D0D0</item>
     </style>
 

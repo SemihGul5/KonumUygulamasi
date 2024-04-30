@@ -19,6 +19,7 @@ public class FavorilerimFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentFavorilerimBinding.inflate(inflater, container, false);
+        binding.materialToolbarFavorilerim.setTitle("Favorilerim");
 
 
 

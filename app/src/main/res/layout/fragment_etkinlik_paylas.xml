@@ -50,13 +50,14 @@
             android:id="@+id/toolbarEtkinlikEkle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/anaRenk"
+            android:background="@color/white"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:titleTextColor="@color/white" />
+            app:titleTextColor="@color/black" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout3"
