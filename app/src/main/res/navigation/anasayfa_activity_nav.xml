@@ -78,6 +78,9 @@
         <action
             android:id="@+id/action_etkinlikAyrintiFragment_to_mapsFragmentEtkinlikAyrinti"
             app:destination="@id/mapsFragmentEtkinlikAyrinti" />
+        <action
+            android:id="@+id/action_etkinlikAyrintiFragment_to_etkinlikBildirFragment"
+            app:destination="@id/etkinlikBildirFragment" />
     </fragment>
     <fragment
         android:id="@+id/ayarlarFragment"
@@ -136,6 +139,18 @@
             app:argType="string" />
         <argument
             android:name="boylam"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/etkinlikBildirFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.EtkinlikBildirFragment"
+        android:label="fragment_etkinlik_bildir"
+        tools:layout="@layout/fragment_etkinlik_bildir" >
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="docID"
             app:argType="string" />
     </fragment>
 </navigation>

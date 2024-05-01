@@ -113,8 +113,9 @@ public class AnaSayfaFragment extends Fragment {
                                                 String paylasildi_mi = (String) data.get("paylasildi_mi");
                                                 String tarih = (String) data.get("tarih");
                                                 String saat = (String) data.get("saat");
+                                                String docID=documentSnapshot.getId();
                                                 Etkinlik etkinlik=new Etkinlik(foto,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
-                                                        tarih,saat);
+                                                        tarih,saat,docID);
                                                 etkinlikList.add(etkinlik);
                                             }
                                             adapter.notifyDataSetChanged();
@@ -154,8 +155,9 @@ public class AnaSayfaFragment extends Fragment {
                                                 String paylasildi_mi = (String) data.get("paylasildi_mi");
                                                 String tarih = (String) data.get("tarih");
                                                 String saat = (String) data.get("saat");
+                                                String docID=documentSnapshot.getId();
                                                 Etkinlik etkinlik=new Etkinlik(foto,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
-                                                        tarih,saat);
+                                                        tarih,saat,docID);
                                                 etkinlikList.add(etkinlik);
                                             }
                                             adapter.notifyDataSetChanged();

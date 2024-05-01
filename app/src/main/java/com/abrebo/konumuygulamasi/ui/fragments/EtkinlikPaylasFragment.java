@@ -61,7 +61,7 @@ public class EtkinlikPaylasFragment extends Fragment {
     Bitmap img;
     String latitude,longitude,sehir,ilce;
     boolean secildiMi=false;
-    String tarih="",saat="";
+    private String tarih="",saat="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

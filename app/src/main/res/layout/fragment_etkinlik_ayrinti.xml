@@ -20,12 +20,13 @@
             android:layout_height="wrap_content"
             android:background="?attr/colorSecondary"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
             android:textAlignment="center"
-            app:titleTextColor="@color/black"
+            android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/etkinlik_ayrinti_menu"
+            app:titleTextColor="@color/black" />
 
 
         <ImageView
@@ -271,6 +272,15 @@
                 android:fontFamily="@font/alata" />
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/imageViewFavorilereEkle"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="64dp"
+            android:src="@drawable/baseline_bookmark_add_24"
+            app:layout_constraintBottom_toBottomOf="@+id/materialToolbarEtkinlikAyrinti"
+            app:layout_constraintEnd_toEndOf="@+id/materialToolbarEtkinlikAyrinti"
+            app:layout_constraintTop_toTopOf="@+id/materialToolbarEtkinlikAyrinti" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
