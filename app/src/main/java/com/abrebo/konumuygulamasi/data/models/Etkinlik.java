@@ -1,6 +1,8 @@
 package com.abrebo.konumuygulamasi.data.models;
 
-public class Etkinlik {
+import java.io.Serializable;
+
+public class Etkinlik implements Serializable {
     private String foto;
     private String ad;
     private String tur;

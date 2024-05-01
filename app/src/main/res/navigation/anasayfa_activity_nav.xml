@@ -14,6 +14,21 @@
         <action
             android:id="@+id/action_anaSayfaFragment_to_etkinlikPaylasFragment"
             app:destination="@id/etkinlikPaylasFragment" />
+        <action
+            android:id="@+id/action_anaSayfaFragment_to_etkinlikAyrintiFragment"
+            app:destination="@id/etkinlikAyrintiFragment" />
+        <action
+            android:id="@+id/action_anaSayfaFragment_to_ayarlarFragment"
+            app:destination="@id/ayarlarFragment" />
+        <action
+            android:id="@+id/action_anaSayfaFragment_to_favorilerimFragment"
+            app:destination="@id/favorilerimFragment" />
+        <action
+            android:id="@+id/action_anaSayfaFragment_to_mesajListesiFragment"
+            app:destination="@id/mesajListesiFragment" />
+        <action
+            android:id="@+id/action_anaSayfaFragment_to_profilimFragment"
+            app:destination="@id/profilimFragment" />
     </fragment>
     <fragment
         android:id="@+id/etkinlikPaylasFragment"
@@ -47,5 +62,80 @@
         <action
             android:id="@+id/action_mapsFragmentEtkinlikPaylas_to_etkinlikPaylasFragment"
             app:destination="@id/etkinlikPaylasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/etkinlikAyrintiFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.EtkinlikAyrintiFragment"
+        android:label="EtkinlikAyrintiFragment"
+        tools:layout="@layout/fragment_etkinlik_ayrinti"
+        >
+        <action
+            android:id="@+id/action_etkinlikAyrintiFragment_to_mesajFragment"
+            app:destination="@id/mesajFragment" />
+        <argument
+            android:name="Etkinlik"
+            app:argType="com.abrebo.konumuygulamasi.data.models.Etkinlik" />
+        <action
+            android:id="@+id/action_etkinlikAyrintiFragment_to_mapsFragmentEtkinlikAyrinti"
+            app:destination="@id/mapsFragmentEtkinlikAyrinti" />
+    </fragment>
+    <fragment
+        android:id="@+id/ayarlarFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.AyarlarFragment"
+        android:label="fragment_ayarlar"
+        tools:layout="@layout/fragment_ayarlar" >
+        <action
+            android:id="@+id/action_ayarlarFragment_to_bigFiveFragment"
+            app:destination="@id/bigFiveFragment" />
+        <action
+            android:id="@+id/action_ayarlarFragment_to_geriBildirimFragment"
+            app:destination="@id/geriBildirimFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bigFiveFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.BigFiveFragment"
+        android:label="fragment_big_five"
+        tools:layout="@layout/fragment_big_five" />
+    <fragment
+        android:id="@+id/favorilerimFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.FavorilerimFragment"
+        android:label="fragment_favorilerim"
+        tools:layout="@layout/fragment_favorilerim" />
+    <fragment
+        android:id="@+id/mesajListesiFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.MesajListesiFragment"
+        android:label="fragment_mesaj_listesi"
+        tools:layout="@layout/fragment_mesaj_listesi" >
+        <action
+            android:id="@+id/action_mesajListesiFragment_to_mesajFragment"
+            app:destination="@id/mesajFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mesajFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.MesajFragment"
+        android:label="fragment_mesaj"
+        tools:layout="@layout/fragment_mesaj" />
+    <fragment
+        android:id="@+id/geriBildirimFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.GeriBildirimFragment"
+        android:label="fragment_geri_bildirim"
+        tools:layout="@layout/fragment_geri_bildirim" />
+    <fragment
+        android:id="@+id/profilimFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.ProfilimFragment"
+        android:label="fragment_profilim"
+        tools:layout="@layout/fragment_profilim" />
+    <fragment
+        android:id="@+id/mapsFragmentEtkinlikAyrinti"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.MapsFragmentEtkinlikAyrinti"
+        android:label="MapsFragmentEtkinlikAyrinti"
+        tools:layout="@layout/fragment_maps_etkinlik_ayrinti"
+        >
+        <argument
+            android:name="enlem"
+            app:argType="string" />
+        <argument
+            android:name="boylam"
+            app:argType="string" />
     </fragment>
 </navigation>

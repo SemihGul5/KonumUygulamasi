@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.abrebo.konumuygulamasi.data.models.Etkinlik;
 import com.abrebo.konumuygulamasi.databinding.EtkinlikCardBinding;
+import com.abrebo.konumuygulamasi.ui.fragments.AnaSayfaFragmentDirections;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -38,14 +40,18 @@ public class EtkinlikAdapter extends RecyclerView.Adapter<EtkinlikAdapter.Etkinl
         Picasso.get().load(etkinlik.getFoto()).into(holder.binding.imageViewCardEtkinlikFoto);
         holder.binding.textViewCardEtkinlikAd.setText(etkinlik.getAd());
         holder.binding.textViewEtkinlikKonum.setText(etkinlik.getKonum());
-
+        holder.binding.textViewTarihVeSaat.setText(etkinlik.getTarih()+" "+etkinlik.getSaat());
+        holder.binding.textViewEtkinlikTuru.setText("Etkinlik Türü: "+etkinlik.getTur());
         // etkinlik kart tasarımına tıklandığında
         holder.binding.etkinlikCard.setOnClickListener(view -> {
-            gitAyrinti(view,etkinlik,holder);
+            gitAyrinti(view,etkinlik);
         });
     }
 
-    private void gitAyrinti(View view, Etkinlik etkinlik, EtkinlikCardHolder holder) {
+    private void gitAyrinti(View view, Etkinlik etkinlik) {
+        AnaSayfaFragmentDirections.ActionAnaSayfaFragmentToEtkinlikAyrintiFragment gecis=
+                AnaSayfaFragmentDirections.actionAnaSayfaFragmentToEtkinlikAyrintiFragment(etkinlik);
+        Navigation.findNavController(view).navigate(gecis);
 
     }
 

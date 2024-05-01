@@ -28,7 +28,11 @@ import android.widget.Toast;
 
 import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.databinding.FragmentEtkinlikPaylasBinding;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,8 +42,10 @@ import com.google.firebase.storage.StorageReference;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.UUID;
 
 
@@ -55,6 +61,7 @@ public class EtkinlikPaylasFragment extends Fragment {
     Bitmap img;
     String latitude,longitude,sehir,ilce;
     boolean secildiMi=false;
+    String tarih="",saat="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -101,6 +108,38 @@ public class EtkinlikPaylasFragment extends Fragment {
         binding.imageViewKonum.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.action_etkinlikPaylasFragment_to_mapsFragmentEtkinlikPaylas);
         });
+        //tarih butonu tıklanması
+        binding.buttonTarih.setOnClickListener(view -> {
+            MaterialDatePicker datePicker= MaterialDatePicker.Builder.datePicker()
+                    .setTitleText("Tarih Seç")
+                    .build();
+            datePicker.show(getChildFragmentManager(),"Tarih");
+
+            datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+                @Override
+                public void onPositiveButtonClick(Object selection) {
+                    SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    tarih=dateFormat.format(selection);
+                    binding.textViewTarih.setText(tarih);
+                }
+            });
+        });
+
+        //saat butonuna tıklanması
+        binding.buttonSaat.setOnClickListener(view -> {
+            MaterialTimePicker timePicker=new MaterialTimePicker.Builder().setTitleText("Saat Seç")
+                    .setTimeFormat(TimeFormat.CLOCK_24H)
+                    .build();
+            timePicker.show(getChildFragmentManager(),"Saat");
+
+            timePicker.addOnPositiveButtonClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    binding.textViewSaat.setText(timePicker.getHour()+" : "+timePicker.getMinute());
+                    saat=timePicker.getHour()+" : "+timePicker.getMinute();
+                }
+            });
+        });
 
         return binding.getRoot();
     }
@@ -112,6 +151,7 @@ public class EtkinlikPaylasFragment extends Fragment {
                 || binding.editTextEtkinlikAdres.getText().toString().isEmpty()
                 || binding.editTextEtkinlikAciklama.getText().toString().isEmpty()
                 || binding.imageViewCheckPass.getResources().equals(R.drawable.close)
+                || tarih.isEmpty() ||saat.isEmpty()
                 ) {
             Toast.makeText(getContext(), "Tüm Alanlar Doldurulmalıdır!", Toast.LENGTH_SHORT).show();
             return;
@@ -133,6 +173,7 @@ public class EtkinlikPaylasFragment extends Fragment {
                     String email = user.getEmail();
                     String foto = uri.toString();
                     String ad = binding.editTextEtkinlikAd.getText().toString();
+                    ad=ad.substring(0, 1).toUpperCase() + ad.substring(1);
                     String tur = binding.autoCompleteTextView.getText().toString();
                     String konum = binding.editTextEtkinlikAdres.getText().toString();
                     String aciklama= binding.editTextEtkinlikAciklama.getText().toString();
@@ -147,7 +188,8 @@ public class EtkinlikPaylasFragment extends Fragment {
                     postData.put("paylasildi_mi","true");
                     postData.put("enlem",latitude);
                     postData.put("boylam",longitude);
-
+                    postData.put("tarih",tarih);
+                    postData.put("saat",saat);
 
                     //firebase koleksiyonuna yükleme işlemi ve sonucunun ne olduğunu değerlendirme
                     firebaseFirestore.collection("etkinlikler")
@@ -197,6 +239,10 @@ public class EtkinlikPaylasFragment extends Fragment {
         binding.editTextEtkinlikAdres.setText("");
         binding.editTextEtkinlikAciklama.setText("");
         binding.autoCompleteTextView.clearListSelection();
+        binding.textViewSaat.setText("");
+        binding.textViewTarih.setText("");
+        tarih="";
+        saat="";
     }
 
 

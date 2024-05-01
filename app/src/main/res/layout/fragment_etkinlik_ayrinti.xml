@@ -1,206 +1,278 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/white"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.EtkinlikAyrintiFragment" >
+    android:layout_height="match_parent">
 
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/materialToolbarEtkinlikAyrinti"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorSecondary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        android:textAlignment="center"
-        app:titleTextColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ImageView
-        android:id="@+id/imageViewEtkinlikAyrintiFoto"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/baseline_add_a_photo_24"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayoutb5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbarEtkinlikAyrinti" />
-
-    <LinearLayout
-        android:id="@+id/linearLayoutb5"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayoutb6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewEtkinlikAyrintiFoto">
+        tools:context=".ui.fragments.EtkinlikAyrintiFragment" >
 
 
-        <TextView
-            android:id="@+id/etkinlik_ayrinti_AD"
-            android:layout_width="wrap_content"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/materialToolbarEtkinlikAyrinti"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
-            android:text="Etkinlik Adı"
+            android:background="?attr/colorSecondary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="94dp"
-            tools:layout_editor_absoluteY="101dp" />
-    </LinearLayout>
+            app:titleTextColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayoutb6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:fontFamily="@font/roboto"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutb5">
 
-        <TextView
-            android:id="@+id/textViewb2"
+        <ImageView
+            android:id="@+id/imageViewEtkinlikAyrintiFoto"
             android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/baseline_add_a_photo_24"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutb5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialToolbarEtkinlikAyrinti" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutb5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto"
-            android:text="Konum"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteY="102dp" />
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutb6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewEtkinlikAyrintiFoto">
 
-        <TextView
-            android:id="@+id/etkinlik_ayrinti_konum"
-            android:layout_width="0dp"
+
+            <TextView
+                android:id="@+id/etkinlik_ayrinti_AD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/alata"
+                android:text="Etkinlik Adı"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="94dp"
+                tools:layout_editor_absoluteY="101dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutb6"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto"
-            android:text=""
-            android:textAlignment="viewEnd"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:layout_marginStart="32dp"
+            android:fontFamily="@font/alata"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutb5">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textViewb2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/alata"
+                android:text="Tarih ve Saat"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteY="102dp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayoutb7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutb6">
+            <TextView
+                android:id="@+id/etkinlik_ayrinti_tarih_saat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/alata"
+                android:text=""
+                android:textAlignment="viewEnd"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/text3"
-            android:layout_width="0dp"
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutb7"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto"
-            android:text="Tür"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteY="102dp" />
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutb6">
 
-        <TextView
-            android:id="@+id/etkinlik_ayrinti_telefon"
-            android:layout_width="0dp"
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/alata"
+                android:text="Konum"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteY="102dp" />
+
+            <TextView
+                android:id="@+id/etkinlik_ayrinti_konum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/alata"
+                android:text=""
+                android:textAlignment="viewEnd"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutb8"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto"
-            android:text=""
-            android:textAlignment="viewEnd"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-    </LinearLayout>
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutb7">
 
-    <LinearLayout
-        android:id="@+id/linearLayoutb8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutb7">
+            <TextView
+                android:id="@+id/text4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/alata"
+                android:text="Tür"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteY="102dp" />
 
-        <TextView
-            android:id="@+id/text4"
-            android:layout_width="0dp"
+            <TextView
+                android:id="@+id/etkinlik_ayrinti_tur"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/alata"
+                android:text=""
+                android:textAlignment="viewEnd"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutb9"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto"
-            android:text="Açıklama"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteY="102dp" />
+            android:layout_marginStart="32dp"
+            android:fontFamily="@font/alata"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutb8">
 
-        <TextView
-            android:id="@+id/etkinlik_ayrinti_CINSIYET"
-            android:layout_width="0dp"
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/alata"
+                android:text="Açıklama"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteY="102dp" />
+
+            <TextView
+                android:id="@+id/etkinlik_ayrinti_aciklama"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/alata"
+                android:text=""
+                android:textAlignment="viewEnd"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayoutb10"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto"
-            android:text=""
-            android:textAlignment="viewEnd"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-    </LinearLayout>
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutb9">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout16"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutb8">
-
-
-        <Button
-            android:id="@+id/buttonMesaj"
-            android:layout_width="0dp"
+            <TextView
+                android:id="@+id/etkinlik_ayrinti_haritada_goster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/alata"
+                android:text="Haritada Göster"
+                android:textAlignment="center"
+                android:textColor="@color/mavi"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="94dp"
+                tools:layout_editor_absoluteY="101dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout16"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="8dp"
-            android:text="İletişime Geç"
-            android:textSize="16sp"
-            android:fontFamily="@font/roboto" />
-    </LinearLayout>
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutb10">
+
+
+            <Button
+                android:id="@+id/buttonMesaj"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:text="Sohbet Odasına Katıl"
+                android:textSize="16sp"
+                android:fontFamily="@font/alata" />
+        </LinearLayout>
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
