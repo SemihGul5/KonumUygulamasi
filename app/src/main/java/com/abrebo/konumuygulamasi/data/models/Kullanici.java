@@ -1,6 +1,8 @@
 package com.abrebo.konumuygulamasi.data.models;
 
-public class Kullanici {
+import java.io.Serializable;
+
+public class Kullanici implements Serializable {
     private String adSoyad;
     private String kullaniciAdi;
     private String email;

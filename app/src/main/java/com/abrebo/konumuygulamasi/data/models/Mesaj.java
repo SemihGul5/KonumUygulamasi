@@ -1,7 +1,7 @@
 package com.abrebo.konumuygulamasi.data.models;
 
 public class Mesaj {
-    private String alici_ad;
+    private String alici_etkinlik_id;
     private String alici_email;
     private String gonderen_ad;
     private String gonderen_email;
@@ -12,9 +12,9 @@ public class Mesaj {
     public Mesaj() {
     }
 
-    public Mesaj(String alici_ad, String alici_email, String gonderen_ad, String gonderen_email, String mesaj, String saat, String mesajId) {
-        this.alici_ad = alici_ad;
-        this.alici_email = alici_email;
+    public Mesaj(String alici_etkinlik_id,String alici_email, String gonderen_ad, String gonderen_email, String mesaj, String saat, String mesajId) {
+        this.alici_etkinlik_id = alici_etkinlik_id;
+        this.alici_email=alici_email;
         this.gonderen_ad = gonderen_ad;
         this.gonderen_email = gonderen_email;
         this.mesaj = mesaj;
@@ -22,12 +22,12 @@ public class Mesaj {
         this.mesajId = mesajId;
     }
 
-    public String getAlici_ad() {
-        return alici_ad;
+    public String getAlici_etkinlik_id() {
+        return alici_etkinlik_id;
     }
 
-    public void setAlici_ad(String alici_ad) {
-        this.alici_ad = alici_ad;
+    public void setAlici_etkinlik_id(String alici_etkinlik_id) {
+        this.alici_etkinlik_id = alici_etkinlik_id;
     }
 
     public String getAlici_email() {

@@ -61,7 +61,9 @@ public class EtkinlikAyrintiFragment extends Fragment {
         
         //sohbet odasına katıla tıklandığında
         binding.buttonMesaj.setOnClickListener(view -> {
-            
+            EtkinlikAyrintiFragmentDirections.ActionEtkinlikAyrintiFragmentToMesajFragment gecis=
+                    EtkinlikAyrintiFragmentDirections.actionEtkinlikAyrintiFragmentToMesajFragment(etkinlik);
+            Navigation.findNavController(view).navigate(gecis);
         });
 
         //menü elemanlarına tıklanıldığında

@@ -36,7 +36,7 @@
         android:layout_margin="8dp"
         android:fontFamily="@font/roboto"
         android:layout_marginStart="8dp"
-        android:text="Lütfen aşağıdaki cümlelere, kendinizi değerlendirerek 1 ile 5 arasında puan verin. Bu testin 1 kere yapılacağını unutmayın." />
+        android:text="Lütfen aşağıdaki ifadelere, kendinizi değerlendirerek 1 ile 5 arasında puan verin. Bu testin 1 kere yapılacağını unutmayın." />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"

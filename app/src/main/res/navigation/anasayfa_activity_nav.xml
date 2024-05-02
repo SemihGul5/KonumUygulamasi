@@ -117,7 +117,11 @@
         android:id="@+id/mesajFragment"
         android:name="com.abrebo.konumuygulamasi.ui.fragments.MesajFragment"
         android:label="fragment_mesaj"
-        tools:layout="@layout/fragment_mesaj" />
+        tools:layout="@layout/fragment_mesaj" >
+        <argument
+            android:name="etkinlik"
+            app:argType="com.abrebo.konumuygulamasi.data.models.Etkinlik" />
+    </fragment>
     <fragment
         android:id="@+id/geriBildirimFragment"
         android:name="com.abrebo.konumuygulamasi.ui.fragments.GeriBildirimFragment"
