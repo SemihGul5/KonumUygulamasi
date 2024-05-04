@@ -45,7 +45,7 @@ public class FavorilerimFragment extends Fragment {
         etkinlikList=new ArrayList<>();
         getData(email,firestore);
         binding.rvFavorilerim.setLayoutManager(new GridLayoutManager(getContext(),2));
-        adapter=new EtkinlikAdapter(getContext(),etkinlikList);
+        adapter=new EtkinlikAdapter(getContext(),etkinlikList, EtkinlikAdapter.SayfaTuru.FAVORILER_SAYFASI);
         binding.rvFavorilerim.setAdapter(adapter);
 
 

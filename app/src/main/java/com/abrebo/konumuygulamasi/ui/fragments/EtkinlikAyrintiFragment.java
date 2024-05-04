@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -35,6 +37,7 @@ public class EtkinlikAyrintiFragment extends Fragment {
     FirebaseFirestore firestore;
     FirebaseAuth auth;
     String email;
+    Boolean favoriMi;
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +55,10 @@ public class EtkinlikAyrintiFragment extends Fragment {
         binding.etkinlikAyrintiTarihSaat.setText(etkinlik.getTarih()+" "+etkinlik.getSaat());
         binding.etkinlikAyrintiTur.setText(etkinlik.getTur());
         binding.etkinlikAyrintiAciklama.setText(etkinlik.getAciklama());
+
+        getFavoriMi(auth.getCurrentUser().getEmail(),etkinlik.getDocID());
+
+
         
         
         // haritada göstere tıklandığında;
@@ -93,40 +100,73 @@ public class EtkinlikAyrintiFragment extends Fragment {
             }
         });
 
-        // favorilere ekleye tıklandığında
         binding.imageViewFavorilereEkle.setOnClickListener(view -> {
-            if (binding.imageViewFavorilereEkle.getResources().equals(R.drawable.baseline_bookmark_add_24)){
-                // favorilerinde değil, ekle
-                etkinligiFavorilereEkle(etkinlik.getDocID(),email,firestore);
+            if (favoriMi){
+                etkinligiFavorilerdenSil(etkinlik.getDocID(), firestore);
             }else{
-                //favorilerde, sil
-                etkinligiFavorilerdenSil(etkinlik.getDocID(),firestore);
+                etkinligiFavorilereEkle(etkinlik.getDocID(), email, firestore);
             }
         });
+
 
 
 
         return binding.getRoot();
     }
 
-    private void etkinligiFavorilerdenSil(String docID, FirebaseFirestore firestore) {
+
+
+    private void getFavoriMi(String email, String docID) {
+        // Kullanıcının emailine göre Firestore'da favoriler koleksiyonunda arama yap
         firestore.collection("favoriler")
-                .document(docID)
-                .delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(getContext(), "Etkinlik favorilerden kaldırıldı", Toast.LENGTH_SHORT).show();
-                        binding.imageViewFavorilereEkle.setImageResource(R.drawable.baseline_bookmark_add_24);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(), "Etkinlik favorilerden kaldırılırken hata oluştu: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                .whereEqualTo("email", email)
+                .whereEqualTo("docID", docID)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // Favoriler koleksiyonunda kayıt bulundu
+                        if (!task.getResult().isEmpty()) {
+                            // Favoride var
+                            favoriMi=true;
+                            binding.imageViewFavorilereEkle.setImageResource(R.drawable.baseline_bookmark_added_24);
+                        } else {
+                            // Favoride yok, ekle
+                            favoriMi=false;;
+                            binding.imageViewFavorilereEkle.setImageResource(R.drawable.baseline_bookmark_add_24);
+                        }
+                    } else {
+                        // Firestore sorgusu başarısız oldu
+                        Toast.makeText(requireContext(), "Favorileri kontrol ederken bir hata oluştu.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
+    private void etkinligiFavorilerdenSil(String docID, FirebaseFirestore firestore) {
+        firestore.collection("favoriler")
+                .whereEqualTo("docID", docID)
+                .whereEqualTo("email", email)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    // Favoriler koleksiyonunda belirli bir etkinliğin kaydını bulduk
+                    for (QueryDocumentSnapshot snapshot : queryDocumentSnapshots) {
+                        // Belirli bir kaydı sil
+                        firestore.collection("favoriler")
+                                .document(snapshot.getId()) // Silinecek belgenin kimliğini al
+                                .delete()
+                                .addOnSuccessListener(aVoid -> {
+                                    Toast.makeText(getContext(), "Etkinlik favorilerden kaldırıldı", Toast.LENGTH_SHORT).show();
+                                    binding.imageViewFavorilereEkle.setImageResource(R.drawable.baseline_bookmark_add_24);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(getContext(), "Etkinlik favorilerden kaldırılırken hata oluştu: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Favorileri kontrol ederken bir hata oluştu: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+    }
+
 
     private void etkinligiFavorilereEkle(String docID, String email, FirebaseFirestore firestore) {
         CollectionReference bildirilerCollectionRef = firestore.collection("favoriler");

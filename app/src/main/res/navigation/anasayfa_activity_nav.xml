@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_anaSayfaFragment_to_mapsFragmentEtkinlikPaylas"
             app:destination="@id/mapsFragmentEtkinlikPaylas" />
+        <action
+            android:id="@+id/action_anaSayfaFragment_to_mapsFragmentEtkinlikPin"
+            app:destination="@id/mapsFragmentEtkinlikPin" />
     </fragment>
     <fragment
         android:id="@+id/etkinlikPaylasFragment"
@@ -103,7 +106,11 @@
         android:id="@+id/favorilerimFragment"
         android:name="com.abrebo.konumuygulamasi.ui.fragments.FavorilerimFragment"
         android:label="fragment_favorilerim"
-        tools:layout="@layout/fragment_favorilerim" />
+        tools:layout="@layout/fragment_favorilerim" >
+        <action
+            android:id="@+id/action_favorilerimFragment_to_etkinlikAyrintiFragment"
+            app:destination="@id/etkinlikAyrintiFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mesajListesiFragment"
         android:name="com.abrebo.konumuygulamasi.ui.fragments.MesajListesiFragment"
@@ -157,4 +164,9 @@
             android:name="docID"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/mapsFragmentEtkinlikPin"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.MapsFragmentEtkinlikPin"
+        android:label="fragment_maps_etkinlik_pin"
+        tools:layout="@layout/fragment_maps_etkinlik_pin" />
 </navigation>

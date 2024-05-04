@@ -1,10 +1,21 @@
 package com.abrebo.konumuygulamasi.ui.fragments;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -19,6 +30,12 @@ import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.data.models.Etkinlik;
 import com.abrebo.konumuygulamasi.databinding.FragmentAnaSayfaBinding;
 import com.abrebo.konumuygulamasi.ui.adapters.EtkinlikAdapter;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -29,14 +46,16 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class AnaSayfaFragment extends Fragment {
+public class AnaSayfaFragment extends Fragment implements OnMapReadyCallback{
     private FragmentAnaSayfaBinding binding;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
-    ArrayList<Etkinlik> etkinlikList;
-    EtkinlikAdapter adapter;
-    String kullaniciSehir="";
-    Boolean oneri;
+    private ArrayList<Etkinlik> etkinlikList;
+    private EtkinlikAdapter adapter;
+    private String kullaniciSehir="";
+    private Boolean oneri;
+    private GoogleMap googleMap;
+    private ActivityResultLauncher<String> permissionLauncher;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,10 +67,16 @@ public class AnaSayfaFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         etkinlikList=new ArrayList<>();
         getKullaniciOneriDurum();
+        binding.mapViewAna.onCreate(savedInstanceState);
+        binding.mapViewAna.getMapAsync(this);
+
         binding.recyclerViewEtkinliklerAnaSayfa.setLayoutManager(new GridLayoutManager(getContext(),2));
-        adapter=new EtkinlikAdapter(getContext(),etkinlikList);
+        adapter=new EtkinlikAdapter(getContext(),etkinlikList, EtkinlikAdapter.SayfaTuru.ANA_SAYFA);
         binding.recyclerViewEtkinliklerAnaSayfa.setAdapter(adapter);
         geriTusuIslemleri();
+        binding.buttonHaritadaGoster.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_anaSayfaFragment_to_mapsFragmentEtkinlikPin);
+        });
 
 
 
@@ -70,8 +95,26 @@ public class AnaSayfaFragment extends Fragment {
 
 
 
+
+
         return binding.getRoot();
     }
+
+
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap map) {
+        googleMap = map;
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+        LatLng startPoint = new LatLng(38.3935, 27.1591);
+
+        float zoomLevel = 15.0f;
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPoint, zoomLevel));
+    }
+
+
 
     private void getKullaniciOneriDurum() {
         db.collection("kullanicilar")

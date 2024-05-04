@@ -12,17 +12,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.abrebo.konumuygulamasi.data.models.Etkinlik;
 import com.abrebo.konumuygulamasi.databinding.EtkinlikCardBinding;
 import com.abrebo.konumuygulamasi.ui.fragments.AnaSayfaFragmentDirections;
+import com.abrebo.konumuygulamasi.ui.fragments.FavorilerimFragmentDirections;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class EtkinlikAdapter extends RecyclerView.Adapter<EtkinlikAdapter.EtkinlikCardHolder> {
+
+    public enum SayfaTuru {
+        ANA_SAYFA,
+        FAVORILER_SAYFASI
+    }
+
+    private SayfaTuru sayfaTuru;
     private Context mContext;
     private List<Etkinlik> etkinlikList;
 
-    public EtkinlikAdapter(Context mContext, List<Etkinlik> etkinlikList) {
+    public EtkinlikAdapter(Context mContext, List<Etkinlik> etkinlikList,SayfaTuru sayfaTuru) {
         this.mContext = mContext;
         this.etkinlikList = etkinlikList;
+        this.sayfaTuru=sayfaTuru;
     }
 
     @NonNull
@@ -49,9 +58,15 @@ public class EtkinlikAdapter extends RecyclerView.Adapter<EtkinlikAdapter.Etkinl
     }
 
     private void gitAyrinti(View view, Etkinlik etkinlik) {
-        AnaSayfaFragmentDirections.ActionAnaSayfaFragmentToEtkinlikAyrintiFragment gecis=
-                AnaSayfaFragmentDirections.actionAnaSayfaFragmentToEtkinlikAyrintiFragment(etkinlik);
-        Navigation.findNavController(view).navigate(gecis);
+        if (sayfaTuru==SayfaTuru.ANA_SAYFA){
+            AnaSayfaFragmentDirections.ActionAnaSayfaFragmentToEtkinlikAyrintiFragment gecis=
+                    AnaSayfaFragmentDirections.actionAnaSayfaFragmentToEtkinlikAyrintiFragment(etkinlik);
+            Navigation.findNavController(view).navigate(gecis);
+        }else if (sayfaTuru==SayfaTuru.FAVORILER_SAYFASI){
+            FavorilerimFragmentDirections.ActionFavorilerimFragmentToEtkinlikAyrintiFragment gecis=
+                    FavorilerimFragmentDirections.actionFavorilerimFragmentToEtkinlikAyrintiFragment(etkinlik);
+            Navigation.findNavController(view).navigate(gecis);
+        }
 
     }
 
