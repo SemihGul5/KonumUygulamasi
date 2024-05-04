@@ -24,7 +24,7 @@
             android:layout_marginEnd="32dp"
             android:fontFamily="@font/roboto"
             android:hint="Ad ve Soyad"
-
+            android:textColor="@color/black"
             app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
             android:layout_marginEnd="32dp"
             android:fontFamily="@font/roboto"
             android:hint="Kullanıcı Adı"
-
+            android:textColor="@color/black"
             app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
-                android:inputType="textEmailAddress"
+                android:inputType="text"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -143,11 +143,11 @@
 
 
         <Button
-            android:id="@+id/girisYapButton"
+            android:id="@+id/kayitOlYapButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Giriş Yap"
+            android:text="Kayıt Ol"
             android:backgroundTint="@color/anaRenk"
             android:fontFamily="@font/roboto"
             android:layout_marginStart="32dp"
@@ -196,7 +196,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/girisYapButton" />
+            app:layout_constraintTop_toBottomOf="@+id/kayitOlYapButton" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout4"
@@ -204,7 +204,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:hint="Doğum Tarihi"
+            android:hint="Doğum Yılı"
             android:fontFamily="@font/roboto"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -212,6 +212,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/yasText"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                  />

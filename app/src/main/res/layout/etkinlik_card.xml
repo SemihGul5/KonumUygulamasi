@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="200dp"
-    android:layout_height="300dp"
+    android:layout_height="325dp"
     android:layout_margin="5dp"
     android:orientation="vertical">
     <androidx.cardview.widget.CardView
@@ -14,11 +14,12 @@
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:layout_height="match_parent"
+        android:layout_margin="5dp"
         app:cardCornerRadius="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="200dp"
-            android:layout_height="300dp">
+            android:layout_height="325dp">
 
             <ImageView
                 android:id="@+id/imageViewCardEtkinlikFoto"
@@ -37,12 +38,12 @@
                 android:layout_marginTop="64dp"
                 android:fontFamily="@font/alata"
                 android:text="Mangal"
-                android:textSize="17sp"
                 android:textColor="@color/black"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textViewEtkinlikKonum"
-                app:layout_constraintEnd_toEndOf="@+id/imageViewCardEtkinlikFoto"
-                app:layout_constraintStart_toStartOf="@+id/imageViewCardEtkinlikFoto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewCardEtkinlikFoto" />
 
 
@@ -50,11 +51,13 @@
                 android:id="@+id/textViewEtkinlikKonum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/alata"
                 android:text="İstanbul / Başakşehir"
-                app:layout_constraintEnd_toEndOf="@+id/textViewCardEtkinlikAd"
-                app:layout_constraintStart_toStartOf="@+id/textViewCardEtkinlikAd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewCardEtkinlikAd" />
 
             <TextView

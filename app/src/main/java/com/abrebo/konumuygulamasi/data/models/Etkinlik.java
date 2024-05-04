@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 public class Etkinlik implements Serializable {
     private String foto;
+    private String foto2;
+    private String foto3;
+    private String foto4;
     private String ad;
     private String tur;
     private String konum;
@@ -19,9 +22,12 @@ public class Etkinlik implements Serializable {
     public Etkinlik() {
     }
 
-    public Etkinlik(String foto, String ad, String tur, String konum, String aciklama, String enlem, String boylam,String email,
+    public Etkinlik(String foto,String foto2,String foto3,String foto4, String ad, String tur, String konum, String aciklama, String enlem, String boylam,String email,
                     String paylasildi_mi,String tarih,String saat,String docID) {
         this.foto = foto;
+        this.foto2=foto2;
+        this.foto3=foto3;
+        this.foto4=foto4;
         this.ad = ad;
         this.tur = tur;
         this.konum = konum;
@@ -41,6 +47,30 @@ public class Etkinlik implements Serializable {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getFoto2() {
+        return foto2;
+    }
+
+    public void setFoto2(String foto2) {
+        this.foto2 = foto2;
+    }
+
+    public String getFoto3() {
+        return foto3;
+    }
+
+    public void setFoto3(String foto3) {
+        this.foto3 = foto3;
+    }
+
+    public String getFoto4() {
+        return foto4;
+    }
+
+    public void setFoto4(String foto4) {
+        this.foto4 = foto4;
     }
 
     public String getAd() {

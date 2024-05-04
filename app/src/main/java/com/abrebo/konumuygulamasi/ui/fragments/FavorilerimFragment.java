@@ -88,6 +88,9 @@ public class FavorilerimFragment extends Fragment {
                                 Map<String, Object> data = document.getData();
                                 if (data != null) {
                                     String foto = (String) data.get("foto");
+                                    String foto2=(String) data.get("foto2");
+                                    String foto3=(String) data.get("foto3");
+                                    String foto4=(String) data.get("foto4");
                                     String ad = (String) data.get("ad");
                                     String tur = (String) data.get("tur");
                                     String konum = (String) data.get("konum");
@@ -101,7 +104,7 @@ public class FavorilerimFragment extends Fragment {
                                     String docID2 = document.getId();
 
                                     // Yeni etkinlik nesnesi oluştur ve listeye ekle
-                                    Etkinlik etkinlik = new Etkinlik(foto, ad, tur, konum, aciklama, enlem, boylam, email, paylasildi_mi,
+                                    Etkinlik etkinlik = new Etkinlik(foto,foto2,foto3,foto4, ad, tur, konum, aciklama, enlem, boylam, email, paylasildi_mi,
                                             tarih, saat, docID2);
                                     etkinlikList.add(etkinlik);
                                 }

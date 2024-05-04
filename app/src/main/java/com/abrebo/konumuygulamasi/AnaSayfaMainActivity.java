@@ -17,7 +17,7 @@ public class AnaSayfaMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityAnaSayfaMainBinding.inflate(getLayoutInflater());
+        binding= ActivityAnaSayfaMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         fragmentManager =getSupportFragmentManager();

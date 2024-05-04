@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:179482277569:android:67a91a2f9e9196799b0640",
+        "mobilesdk_app_id": "1:179482277569:android:4e90a3cc569060599b0640",
         "android_client_info": {
-          "package_name": "com.abrebo.konumuygulamasi.ui"
+          "package_name": "com.abrebo.konumuygulamasi"
         }
       },
       "oauth_client": [],

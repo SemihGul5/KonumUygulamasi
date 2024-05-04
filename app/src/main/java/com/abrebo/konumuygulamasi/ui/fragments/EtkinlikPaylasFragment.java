@@ -2,6 +2,7 @@ package com.abrebo.konumuygulamasi.ui.fragments;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -27,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.abrebo.konumuygulamasi.R;
+import com.abrebo.konumuygulamasi.data.models.ImageUtil;
 import com.abrebo.konumuygulamasi.databinding.FragmentEtkinlikPaylasBinding;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -53,15 +55,21 @@ public class EtkinlikPaylasFragment extends Fragment {
     private FragmentEtkinlikPaylasBinding binding;
     ActivityResultLauncher<Intent> activityResultLauncher;
     ActivityResultLauncher<String> permissionLauncher;
-    Uri imageData=null;
+    ActivityResultLauncher<Intent> activityResultLauncher2;
+    ActivityResultLauncher<String> permissionLauncher2;
+    ActivityResultLauncher<Intent> activityResultLauncher3;
+    ActivityResultLauncher<String> permissionLauncher3;
+    ActivityResultLauncher<Intent> activityResultLauncher4;
+    ActivityResultLauncher<String> permissionLauncher4;
+    Uri imageData=null,imageData2=null,imageData3=null,imageData4=null;
     FirebaseAuth auth;
     FirebaseStorage firebaseStorage;
     FirebaseFirestore firebaseFirestore;
     StorageReference storageReference;
     Bitmap img;
     String latitude,longitude,sehir,ilce;
-    boolean secildiMi=false;
     private String tarih="",saat="";
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,42 +80,46 @@ public class EtkinlikPaylasFragment extends Fragment {
         turBaslat();
         //izin işlemleri
         registerLauncher();
+        registerLauncher2();
+        registerLauncher3();
+        registerLauncher4();
         binding.imageView.setOnClickListener(view -> {
-            fotografTiklandi(view);
+            fotografTiklandi1(view);
+        });
+        binding.addImage2.setOnClickListener(view -> {
+            if (!binding.addImage2.getResources().equals(R.drawable.background_photo)){
+                fotografTiklandi2(view);
+            }
+        });
+        binding.addImage3.setOnClickListener(view -> {
+            if (!binding.addImage3.getResources().equals(R.drawable.background_photo)){
+                fotografTiklandi3(view);
+            }
+        });
+        binding.addImage4.setOnClickListener(view -> {
+            if (!binding.addImage4.getResources().equals(R.drawable.background_photo)){
+                fotografTiklandi4(view);
+            }
         });
         // başlatılmalar
         auth = FirebaseAuth.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         storageReference = firebaseStorage.getReference();
+        EtkinlikPaylasFragmentArgs bundle=EtkinlikPaylasFragmentArgs.fromBundle(getArguments());
+        latitude=bundle.getLatitude();
+        longitude=bundle.getLongitude();
+        sehir=bundle.getSehir();
+        ilce=bundle.getIlce();
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            latitude = bundle.getString("la");
-            longitude = bundle.getString("lo");
-            sehir = bundle.getString("sehir");
-            ilce = bundle.getString("ilce");
-            if (latitude==null){
-                binding.imageViewCheckPass.setImageResource(R.drawable.close);
-                secildiMi=false;
-            }else{
-                binding.imageViewCheckPass.setImageResource(R.drawable.check);
-                secildiMi=true;
-            }
-            // Veri alındı, burada işlemleri yapabilirsiniz
-        }
-        if (secildiMi){
-            binding.imageViewKonum.setEnabled(false);
-        }
+        binding.editTextEtkinlikAdres.setText(sehir+" / "+ilce);
 
         //kaydet butonu tıklanması
         binding.buttonEtkinlikPaylas.setOnClickListener(view -> {
             etlinlikPaylas(view);
         });
-        // konum eklemeye tıklanması
-        binding.imageViewKonum.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigate(R.id.action_etkinlikPaylasFragment_to_mapsFragmentEtkinlikPaylas);
-        });
+
+
         //tarih butonu tıklanması
         binding.buttonTarih.setOnClickListener(view -> {
             MaterialDatePicker datePicker= MaterialDatePicker.Builder.datePicker()
@@ -150,7 +162,6 @@ public class EtkinlikPaylasFragment extends Fragment {
                 || binding.autoCompleteTextView.getText().toString().isEmpty()
                 || binding.editTextEtkinlikAdres.getText().toString().isEmpty()
                 || binding.editTextEtkinlikAciklama.getText().toString().isEmpty()
-                || binding.imageViewCheckPass.getResources().equals(R.drawable.close)
                 || tarih.isEmpty() ||saat.isEmpty()
                 ) {
             Toast.makeText(getContext(), "Tüm Alanlar Doldurulmalıdır!", Toast.LENGTH_SHORT).show();
@@ -181,7 +192,23 @@ public class EtkinlikPaylasFragment extends Fragment {
                     HashMap<String, Object> postData = new HashMap<>();
                     postData.put("email", email);
                     postData.put("ad", ad);
-                    postData.put("foto", foto);
+                    postData.put("foto", imageData);
+                    if (imageData2 != null){
+                        postData.put("foto2", imageData2);
+                    }else{
+                        postData.put("foto2", "null");
+                    }
+                    if (imageData3 != null){
+                        postData.put("foto3", imageData3);
+                    }else{
+                        postData.put("foto3", "null");
+                    }
+                    if (imageData4 != null){
+                        postData.put("foto4", imageData4);
+                    }else{
+                        postData.put("foto4", "null");
+                    }
+
                     postData.put("tur", tur);
                     postData.put("konum", konum);
                     postData.put("aciklama", aciklama);
@@ -234,7 +261,6 @@ public class EtkinlikPaylasFragment extends Fragment {
     private void temizle(){
         binding.autoCompleteTextView.clearListSelection();
         binding.imageView.setImageResource(R.drawable.baseline_add_a_photo_24);
-        binding.imageViewCheckPass.setImageResource(R.drawable.close);
         binding.editTextEtkinlikAd.setText("");
         binding.editTextEtkinlikAdres.setText("");
         binding.editTextEtkinlikAciklama.setText("");
@@ -246,22 +272,21 @@ public class EtkinlikPaylasFragment extends Fragment {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //izin işlemleri
-    public void fotografTiklandi(View view) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void fotografTiklandi1(View view) {
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU){
             if(ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_MEDIA_IMAGES)!= PackageManager.PERMISSION_GRANTED){
                 //izin gerekli
@@ -315,6 +340,170 @@ public class EtkinlikPaylasFragment extends Fragment {
             }
         }
     }
+    public void fotografTiklandi2(View view) {
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU){
+            if(ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_MEDIA_IMAGES)!= PackageManager.PERMISSION_GRANTED){
+                //izin gerekli
+                //kullanıcıya açıklama göstermek zorunda mıyız kontrolü
+                if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.READ_MEDIA_IMAGES)){
+                    //açıklama gerekli
+                    Snackbar.make(view,"Galeriye gitmek için izin gereklidir.",Snackbar.LENGTH_INDEFINITE).setAction("İzin ver", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //izin işlemleri
+                            permissionLauncher2.launch(android.Manifest.permission.READ_MEDIA_IMAGES);
+                        }
+                    }).show();
+                }
+                else{
+                    //izin işlemleri
+                    permissionLauncher2.launch(android.Manifest.permission.READ_MEDIA_IMAGES);
+                }
+
+            }
+            else{
+                //izin daha önceden verilmiş, galeriye git
+                Intent intentToGallery= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                activityResultLauncher2.launch(intentToGallery);
+            }
+        }
+        else{
+            if(ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+                //izin gerekli
+                //kullanıcıya açıklama göstermek zorunda mıyız kontrolü
+                if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),android.Manifest.permission.READ_EXTERNAL_STORAGE)){
+                    //açıklama gerekli
+                    Snackbar.make(view,"Galeriye gitmek için izin gereklidir.",Snackbar.LENGTH_INDEFINITE).setAction("İzin ver", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //izin işlemleri
+                            permissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE);
+                        }
+                    }).show();
+                }
+                else{
+                    //izin işlemleri
+                    permissionLauncher2.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE);
+                }
+
+            }
+            else{
+                //izin daha önceden verilmiş, galeriye git
+                Intent intentToGallery= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                activityResultLauncher2.launch(intentToGallery);
+            }
+        }
+    }
+
+    public void fotografTiklandi4(View view) {
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU){
+            if(ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_MEDIA_IMAGES)!= PackageManager.PERMISSION_GRANTED){
+                //izin gerekli
+                //kullanıcıya açıklama göstermek zorunda mıyız kontrolü
+                if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.READ_MEDIA_IMAGES)){
+                    //açıklama gerekli
+                    Snackbar.make(view,"Galeriye gitmek için izin gereklidir.",Snackbar.LENGTH_INDEFINITE).setAction("İzin ver", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //izin işlemleri
+                            permissionLauncher4.launch(android.Manifest.permission.READ_MEDIA_IMAGES);
+                        }
+                    }).show();
+                }
+                else{
+                    //izin işlemleri
+                    permissionLauncher4.launch(android.Manifest.permission.READ_MEDIA_IMAGES);
+                }
+
+            }
+            else{
+                //izin daha önceden verilmiş, galeriye git
+                Intent intentToGallery= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                activityResultLauncher4.launch(intentToGallery);
+            }
+        }
+        else{
+            if(ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+                //izin gerekli
+                //kullanıcıya açıklama göstermek zorunda mıyız kontrolü
+                if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),android.Manifest.permission.READ_EXTERNAL_STORAGE)){
+                    //açıklama gerekli
+                    Snackbar.make(view,"Galeriye gitmek için izin gereklidir.",Snackbar.LENGTH_INDEFINITE).setAction("İzin ver", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //izin işlemleri
+                            permissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE);
+                        }
+                    }).show();
+                }
+                else{
+                    //izin işlemleri
+                    permissionLauncher4.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE);
+                }
+
+            }
+            else{
+                //izin daha önceden verilmiş, galeriye git
+                Intent intentToGallery= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                activityResultLauncher4.launch(intentToGallery);
+            }
+        }
+    }
+    public void fotografTiklandi3(View view) {
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU){
+            if(ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_MEDIA_IMAGES)!= PackageManager.PERMISSION_GRANTED){
+                //izin gerekli
+                //kullanıcıya açıklama göstermek zorunda mıyız kontrolü
+                if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.READ_MEDIA_IMAGES)){
+                    //açıklama gerekli
+                    Snackbar.make(view,"Galeriye gitmek için izin gereklidir.",Snackbar.LENGTH_INDEFINITE).setAction("İzin ver", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //izin işlemleri
+                            permissionLauncher3.launch(android.Manifest.permission.READ_MEDIA_IMAGES);
+                        }
+                    }).show();
+                }
+                else{
+                    //izin işlemleri
+                    permissionLauncher3.launch(android.Manifest.permission.READ_MEDIA_IMAGES);
+                }
+
+            }
+            else{
+                //izin daha önceden verilmiş, galeriye git
+                Intent intentToGallery= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                activityResultLauncher3.launch(intentToGallery);
+            }
+        }
+        else{
+            if(ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+                //izin gerekli
+                //kullanıcıya açıklama göstermek zorunda mıyız kontrolü
+                if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),android.Manifest.permission.READ_EXTERNAL_STORAGE)){
+                    //açıklama gerekli
+                    Snackbar.make(view,"Galeriye gitmek için izin gereklidir.",Snackbar.LENGTH_INDEFINITE).setAction("İzin ver", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //izin işlemleri
+                            permissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE);
+                        }
+                    }).show();
+                }
+                else{
+                    //izin işlemleri
+                    permissionLauncher3.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE);
+                }
+
+            }
+            else{
+                //izin daha önceden verilmiş, galeriye git
+                Intent intentToGallery= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                activityResultLauncher3.launch(intentToGallery);
+            }
+        }
+    }
+
     private void registerLauncher() {
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -323,14 +512,147 @@ public class EtkinlikPaylasFragment extends Fragment {
                     Intent intentFromResult = result.getData();
                     if (intentFromResult != null) {
                         imageData = intentFromResult.getData();
-                        binding.imageView.setImageURI(imageData);
-
+                        //binding.imageView.setImageURI(imageData);
+                        try {
+                            img  = ImageUtil.uriToBitmap(getContext(), imageData);
+                            imageData=null;
+                            // Bitmap'i kullanabilirsiniz
+                            img = Bitmap.createScaledBitmap(img, 224, 224, true);
+                            imageData = intentFromResult.getData();
+                            binding.imageView.setImageBitmap(img);
+                            binding.addImage2.setImageResource(R.drawable.add_photo);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
         });
 
         permissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
+            @Override
+            public void onActivityResult(Boolean result) {
+                if (result) {
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    activityResultLauncher.launch(intent);
+                } else {
+                    Toast.makeText(getContext(), "İzin verilmedi", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void registerLauncher2() {
+        activityResultLauncher2 = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if (result.getResultCode() == RESULT_OK) {
+                    Intent intentFromResult = result.getData();
+                    if (intentFromResult != null) {
+                        imageData2 = intentFromResult.getData();
+                        //binding.imageView.setImageURI(imageData);
+                        try {
+                            img  = ImageUtil.uriToBitmap(getContext(), imageData2);
+                            imageData2=null;
+                            // Bitmap'i kullanabilirsiniz
+                            img = Bitmap.createScaledBitmap(img, 224, 224, true);
+                            imageData2 = intentFromResult.getData();
+                            binding.addImage2.setImageBitmap(img);
+                            binding.addImage3.setImageResource(R.drawable.add_photo);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+
+        permissionLauncher2 = registerForActivityResult(new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
+            @Override
+            public void onActivityResult(Boolean result) {
+                if (result) {
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    activityResultLauncher.launch(intent);
+                } else {
+                    Toast.makeText(getContext(), "İzin verilmedi", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void registerLauncher3() {
+        activityResultLauncher3 = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if (result.getResultCode() == RESULT_OK) {
+                    Intent intentFromResult = result.getData();
+                    if (intentFromResult != null) {
+                        imageData3 = intentFromResult.getData();
+                        //binding.imageView.setImageURI(imageData);
+                        try {
+                            img  = ImageUtil.uriToBitmap(getContext(), imageData3);
+                            imageData3=null;
+                            // Bitmap'i kullanabilirsiniz
+
+                            img = Bitmap.createScaledBitmap(img, 224, 224, true);
+                            imageData3 = intentFromResult.getData();
+                            binding.addImage3.setImageBitmap(img);
+                            binding.addImage4.setImageResource(R.drawable.add_photo);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+
+        permissionLauncher3 = registerForActivityResult(new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
+            @Override
+            public void onActivityResult(Boolean result) {
+                if (result) {
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    activityResultLauncher.launch(intent);
+                } else {
+                    Toast.makeText(getContext(), "İzin verilmedi", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void registerLauncher4() {
+        activityResultLauncher4 = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if (result.getResultCode() == RESULT_OK) {
+                    Intent intentFromResult = result.getData();
+                    if (intentFromResult != null) {
+                        imageData4 = intentFromResult.getData();
+                        //binding.imageView.setImageURI(imageData);
+                        try {
+                            img  = ImageUtil.uriToBitmap(getContext(), imageData4);
+                            imageData4=null;
+                            // Bitmap'i kullanabilirsiniz
+
+                            img = Bitmap.createScaledBitmap(img, 224, 224, true);
+                            imageData4 = intentFromResult.getData();
+                            binding.addImage4.setImageBitmap(img);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+
+        permissionLauncher4 = registerForActivityResult(new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
             @Override
             public void onActivityResult(Boolean result) {
                 if (result) {

@@ -3,8 +3,10 @@ package com.abrebo.konumuygulamasi.ui.fragments;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.util.Log;
@@ -49,6 +51,20 @@ public class AnaSayfaFragment extends Fragment {
         binding.recyclerViewEtkinliklerAnaSayfa.setLayoutManager(new GridLayoutManager(getContext(),2));
         adapter=new EtkinlikAdapter(getContext(),etkinlikList);
         binding.recyclerViewEtkinliklerAnaSayfa.setAdapter(adapter);
+        geriTusuIslemleri();
+
+
+
+        binding.buttonPaylas.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_anaSayfaFragment_to_mapsFragmentEtkinlikPaylas);
+        });
+        binding.buttonMesajlar.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_anaSayfaFragment_to_mesajListesiFragment);
+        });
+        binding.buttonKaydedilenler.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_anaSayfaFragment_to_favorilerimFragment);
+        });
+
 
 
 
@@ -73,21 +89,20 @@ public class AnaSayfaFragment extends Fragment {
                             }
                             // Öneri durumu alındıktan sonra gerekli işlemleri yapmak için
                             if (oneri) {
-                                getData(kullaniciSehir,true);
+                                getData(true);
                             } else {
-                                getData(kullaniciSehir,false);
+                                getData(false);
                             }
                         }
                     }
                 });
     }
-    private void getData(@Nullable String sehir,Boolean kisilikVarMi) {
+    private void getData(Boolean kisilikVarMi) {
         if (kisilikVarMi){
             getKullaniciKisilik(db, auth, new AnaSayfaFragment.KisilikCallback() {
                 @Override
                 public void onKisilikReceived(String kisilikValue) {
                         db.collection("etkinlikler")
-                                .whereEqualTo("konum",sehir)
                                 .whereEqualTo("kisilik",kisilikValue)
                                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                                     @SuppressLint("NotifyDataSetChanged")
@@ -103,6 +118,9 @@ public class AnaSayfaFragment extends Fragment {
                                             for (DocumentSnapshot documentSnapshot : value.getDocuments()) {
                                                 Map<String, Object> data = documentSnapshot.getData();
                                                 String foto=(String) data.get("foto");
+                                                String foto2=(String) data.get("foto2");
+                                                String foto3=(String) data.get("foto3");
+                                                String foto4=(String) data.get("foto4");
                                                 String ad = (String) data.get("ad");
                                                 String tur = (String) data.get("tur");
                                                 String konum = (String) data.get("konum");
@@ -114,7 +132,7 @@ public class AnaSayfaFragment extends Fragment {
                                                 String tarih = (String) data.get("tarih");
                                                 String saat = (String) data.get("saat");
                                                 String docID=documentSnapshot.getId();
-                                                Etkinlik etkinlik=new Etkinlik(foto,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
+                                                Etkinlik etkinlik=new Etkinlik(foto,foto2,foto3,foto4,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
                                                         tarih,saat,docID);
                                                 etkinlikList.add(etkinlik);
                                             }
@@ -130,7 +148,6 @@ public class AnaSayfaFragment extends Fragment {
                 @Override
                 public void onKisilikReceived(String kisilikValue) {
                         db.collection("etkinlikler")
-                                .whereEqualTo("konum",sehir)
                                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                                     @SuppressLint("NotifyDataSetChanged")
                                     @Override
@@ -145,6 +162,9 @@ public class AnaSayfaFragment extends Fragment {
                                             for (DocumentSnapshot documentSnapshot : value.getDocuments()) {
                                                 Map<String, Object> data = documentSnapshot.getData();
                                                 String foto=(String) data.get("foto");
+                                                String foto2=(String) data.get("foto2");
+                                                String foto3=(String) data.get("foto3");
+                                                String foto4=(String) data.get("foto4");
                                                 String ad = (String) data.get("ad");
                                                 String tur = (String) data.get("tur");
                                                 String konum = (String) data.get("konum");
@@ -156,7 +176,7 @@ public class AnaSayfaFragment extends Fragment {
                                                 String tarih = (String) data.get("tarih");
                                                 String saat = (String) data.get("saat");
                                                 String docID=documentSnapshot.getId();
-                                                Etkinlik etkinlik=new Etkinlik(foto,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
+                                                Etkinlik etkinlik=new Etkinlik(foto,foto2,foto3,foto4,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
                                                         tarih,saat,docID);
                                                 etkinlikList.add(etkinlik);
                                             }
@@ -191,5 +211,22 @@ public class AnaSayfaFragment extends Fragment {
     }
     public interface KisilikCallback {
         void onKisilikReceived(String kisilikValue);
+    }
+    private void geriTusuIslemleri() {
+        OnBackPressedCallback backButtonCallback = new OnBackPressedCallback(true) {
+            private long backPressedTime = 0;
+
+            @Override
+            public void handleOnBackPressed() {
+                long currentTime = System.currentTimeMillis();
+                if (backPressedTime + 2000 > currentTime) {
+                    requireActivity().finishAffinity();
+                } else {
+                    Toast.makeText(getContext(), "Çıkmak için tekrar basın", Toast.LENGTH_SHORT).show();
+                }
+                backPressedTime = currentTime;
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), backButtonCallback);
     }
 }

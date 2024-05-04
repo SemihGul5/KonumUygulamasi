@@ -12,9 +12,6 @@
         tools:layout="@layout/fragment_ana_sayfa" >
 
         <action
-            android:id="@+id/action_anaSayfaFragment_to_etkinlikPaylasFragment"
-            app:destination="@id/etkinlikPaylasFragment" />
-        <action
             android:id="@+id/action_anaSayfaFragment_to_etkinlikAyrintiFragment"
             app:destination="@id/etkinlikAyrintiFragment" />
         <action
@@ -29,6 +26,9 @@
         <action
             android:id="@+id/action_anaSayfaFragment_to_profilimFragment"
             app:destination="@id/profilimFragment" />
+        <action
+            android:id="@+id/action_anaSayfaFragment_to_mapsFragmentEtkinlikPaylas"
+            app:destination="@id/mapsFragmentEtkinlikPaylas" />
     </fragment>
     <fragment
         android:id="@+id/etkinlikPaylasFragment"
@@ -36,9 +36,6 @@
         android:label="fragment_etkinlik_paylas"
         tools:layout="@layout/fragment_etkinlik_paylas" >
 
-        <action
-            android:id="@+id/action_etkinlikPaylasFragment_to_mapsFragmentEtkinlikPaylas"
-            app:destination="@id/mapsFragmentEtkinlikPaylas" />
         <argument
             android:name="latitude"
             app:argType="string" />
@@ -51,6 +48,9 @@
         <argument
             android:name="ilce"
             app:argType="string" />
+        <action
+            android:id="@+id/action_etkinlikPaylasFragment_to_anaSayfaFragment"
+            app:destination="@id/anaSayfaFragment" />
     </fragment>
 
     <fragment

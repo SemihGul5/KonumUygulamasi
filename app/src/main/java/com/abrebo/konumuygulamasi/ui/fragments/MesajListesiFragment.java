@@ -90,7 +90,10 @@ public class MesajListesiFragment extends Fragment {
                                                 // Firestore'dan dönen belgeleri işle
                                                 for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                                     Map<String, Object> data = documentSnapshot.getData();
-                                                    String foto = (String) data.get("foto");
+                                                    String foto=(String) data.get("foto");
+                                                    String foto2=(String) data.get("foto2");
+                                                    String foto3=(String) data.get("foto3");
+                                                    String foto4=(String) data.get("foto4");
                                                     String ad = (String) data.get("ad");
                                                     String tur = (String) data.get("tur");
                                                     String konum = (String) data.get("konum");
@@ -103,7 +106,7 @@ public class MesajListesiFragment extends Fragment {
                                                     String saat = (String) data.get("saat");
                                                     String docID = (String) data.get("docID");
 
-                                                    Etkinlik etkinlik=new Etkinlik(foto,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
+                                                    Etkinlik etkinlik=new Etkinlik(foto,foto2,foto3,foto4,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
                                                             tarih,saat,docID);
                                                     etkinlikLists.add(etkinlik);
                                                 }
