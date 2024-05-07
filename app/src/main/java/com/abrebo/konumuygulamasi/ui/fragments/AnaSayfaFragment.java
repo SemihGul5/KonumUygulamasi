@@ -80,15 +80,6 @@ public class AnaSayfaFragment extends Fragment implements OnMapReadyCallback{
 
 
 
-        binding.buttonPaylas.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigate(R.id.action_anaSayfaFragment_to_mapsFragmentEtkinlikPaylas);
-        });
-        binding.buttonMesajlar.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigate(R.id.action_anaSayfaFragment_to_mesajListesiFragment);
-        });
-        binding.buttonKaydedilenler.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigate(R.id.action_anaSayfaFragment_to_favorilerimFragment);
-        });
 
 
 

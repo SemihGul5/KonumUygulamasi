@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_anaSayfaFragment_to_mapsFragmentEtkinlikPin"
             app:destination="@id/mapsFragmentEtkinlikPin" />
+        <action
+            android:id="@+id/action_anaSayfaFragment_to_etkinlikPaylasFragment"
+            app:destination="@id/etkinlikPaylasFragment" />
     </fragment>
     <fragment
         android:id="@+id/etkinlikPaylasFragment"

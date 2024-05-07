@@ -50,6 +50,7 @@ public class EtkinlikAyrintiFragment extends Fragment {
         EtkinlikAyrintiFragmentArgs bundle=EtkinlikAyrintiFragmentArgs.fromBundle(getArguments());
         Etkinlik etkinlik=bundle.getEtkinlik();
         binding.materialToolbarEtkinlikAyrinti.setTitle(etkinlik.getAd());
+
         Picasso.get().load(etkinlik.getFoto()).into(binding.imageViewEtkinlikAyrintiFoto);
         binding.etkinlikAyrintiAD.setText(etkinlik.getAd());
         binding.etkinlikAyrintiTarihSaat.setText(etkinlik.getTarih()+" "+etkinlik.getSaat());

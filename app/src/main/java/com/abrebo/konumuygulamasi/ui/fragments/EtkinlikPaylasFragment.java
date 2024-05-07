@@ -37,6 +37,7 @@ import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -53,6 +54,7 @@ import java.util.UUID;
 
 public class EtkinlikPaylasFragment extends Fragment {
     private FragmentEtkinlikPaylasBinding binding;
+    private ArrayList<Uri>imageDatalist;
     ActivityResultLauncher<Intent> activityResultLauncher;
     ActivityResultLauncher<String> permissionLauncher;
     ActivityResultLauncher<Intent> activityResultLauncher2;
@@ -78,6 +80,7 @@ public class EtkinlikPaylasFragment extends Fragment {
         binding.toolbarEtkinlikEkle.setTitle("Etkinlik Paylaş");
         //etkinlik türünün başlatılması
         turBaslat();
+        imageDatalist=new ArrayList<>();
         //izin işlemleri
         registerLauncher();
         registerLauncher2();
@@ -106,11 +109,11 @@ public class EtkinlikPaylasFragment extends Fragment {
         firebaseStorage = FirebaseStorage.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         storageReference = firebaseStorage.getReference();
-        EtkinlikPaylasFragmentArgs bundle=EtkinlikPaylasFragmentArgs.fromBundle(getArguments());
-        latitude=bundle.getLatitude();
-        longitude=bundle.getLongitude();
-        sehir=bundle.getSehir();
-        ilce=bundle.getIlce();
+        Bundle bundle=getArguments();
+        latitude=bundle.getString("latitudeStr");
+        longitude=bundle.getString("longitudeStr");
+        sehir=bundle.getString("sehir");
+        ilce=bundle.getString("ilce");
 
         binding.editTextEtkinlikAdres.setText(sehir+" / "+ilce);
 
@@ -163,6 +166,73 @@ public class EtkinlikPaylasFragment extends Fragment {
                 || binding.editTextEtkinlikAdres.getText().toString().isEmpty()
                 || binding.editTextEtkinlikAciklama.getText().toString().isEmpty()
                 || tarih.isEmpty() ||saat.isEmpty()
+        ) {
+            Toast.makeText(getContext(), "Tüm Alanlar Doldurulmalıdır!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        binding.progressBarEtkinlikEkle.setVisibility(View.VISIBLE);
+        binding.buttonEtkinlikPaylas.setEnabled(false);
+
+        imageDatalist.add(imageData);
+        imageDatalist.add(imageData2);
+        imageDatalist.add(imageData3);
+        imageDatalist.add(imageData4);
+
+        String[] fotoURLs = new String[4];
+
+        for (int i = 0; i < 4; i++) {
+            final int index = i;
+
+            if (imageDatalist.get(i) != null) {
+                UUID uuid = UUID.randomUUID();
+                String path = "images/" + uuid + "_" + (i + 1) + ".jpg";
+
+                // Resim yükleme işleminin başarı dinleyicisi
+                storageReference.child(path).putFile(imageDatalist.get(i)).addOnSuccessListener(taskSnapshot -> {
+                    // Resim yükleme işlemi başarılı olduğunda URL alma işlemini gerçekleştir
+                    storageReference.child(path).getDownloadUrl().addOnSuccessListener(uri -> {
+                        fotoURLs[index] = uri.toString();
+
+                        // Tüm resimlerin yüklenmesini beklerip, URL'leri aldıktan sonra veritabanına kaydet
+                        if (allURLsReceived(fotoURLs)) {
+                            savedF(view, fotoURLs[0], fotoURLs[1], fotoURLs[2], fotoURLs[3]);
+                        }
+                    }).addOnFailureListener(e -> {
+                        Toast.makeText(getContext(), "URL alınamadı: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                }).addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Resim yüklenemedi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+            } else {
+                // Resim verisi yoksa, URL'yi "null" olarak ayarla
+                fotoURLs[i] = "null";
+
+                // Tüm resimlerin yüklenmesini beklerip, URL'leri aldıktan sonra veritabanına kaydet
+                if (allURLsReceived(fotoURLs)) {
+                    savedF(view, fotoURLs[0], fotoURLs[1], fotoURLs[2], fotoURLs[3]);
+                }
+            }
+        }
+    }
+
+    // Tüm URL'lerin alınıp alınmadığını kontrol eden yardımcı metod
+    private boolean allURLsReceived(String[] urls) {
+        for (String url : urls) {
+            if (url == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Firebase Firestore'a veri kaydetme işlemi
+    private void savedF(View view, String foto, String foto2, String foto3, String foto4) {
+        if (    imageData == null
+                || binding.editTextEtkinlikAd.getText().toString().isEmpty()
+                || binding.autoCompleteTextView.getText().toString().isEmpty()
+                || binding.editTextEtkinlikAdres.getText().toString().isEmpty()
+                || binding.editTextEtkinlikAciklama.getText().toString().isEmpty()
+                || tarih.isEmpty() ||saat.isEmpty()
                 ) {
             Toast.makeText(getContext(), "Tüm Alanlar Doldurulmalıdır!", Toast.LENGTH_SHORT).show();
             return;
@@ -182,7 +252,6 @@ public class EtkinlikPaylasFragment extends Fragment {
                     FirebaseUser user = auth.getCurrentUser();
                     //kaydedilecek veriler;
                     String email = user.getEmail();
-                    String foto = uri.toString();
                     String ad = binding.editTextEtkinlikAd.getText().toString();
                     ad=ad.substring(0, 1).toUpperCase() + ad.substring(1);
                     String tur = binding.autoCompleteTextView.getText().toString();
@@ -192,23 +261,10 @@ public class EtkinlikPaylasFragment extends Fragment {
                     HashMap<String, Object> postData = new HashMap<>();
                     postData.put("email", email);
                     postData.put("ad", ad);
-                    postData.put("foto", imageData);
-                    if (imageData2 != null){
-                        postData.put("foto2", imageData2);
-                    }else{
-                        postData.put("foto2", "null");
-                    }
-                    if (imageData3 != null){
-                        postData.put("foto3", imageData3);
-                    }else{
-                        postData.put("foto3", "null");
-                    }
-                    if (imageData4 != null){
-                        postData.put("foto4", imageData4);
-                    }else{
-                        postData.put("foto4", "null");
-                    }
-
+                    postData.put("foto", foto);
+                    postData.put("foto2", foto2);
+                    postData.put("foto3", foto3);
+                    postData.put("foto4", foto4);
                     postData.put("tur", tur);
                     postData.put("konum", konum);
                     postData.put("aciklama", aciklama);
@@ -217,7 +273,9 @@ public class EtkinlikPaylasFragment extends Fragment {
                     postData.put("boylam",longitude);
                     postData.put("tarih",tarih);
                     postData.put("saat",saat);
-
+                    UUID uuidEtkinlik = UUID.randomUUID();
+                    String uuidEtkinliks=String.valueOf(uuidEtkinlik);
+                    postData.put("uuid",uuidEtkinliks);
                     //firebase koleksiyonuna yükleme işlemi ve sonucunun ne olduğunu değerlendirme
                     firebaseFirestore.collection("etkinlikler")
                             .add(postData)

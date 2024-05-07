@@ -109,16 +109,28 @@ public class MapsFragmentEtkinlikPaylas extends Fragment {
                 String longitudeStr = String.valueOf(longitude);
 
                 getCityNameWithLocation(latitude, longitude);
+                bundleYolla(latitudeStr,longitudeStr,sehir,ilce);
 
-                MapsFragmentEtkinlikPaylasDirections.ActionMapsFragmentEtkinlikPaylasToEtkinlikPaylasFragment gecis=
-                        MapsFragmentEtkinlikPaylasDirections.actionMapsFragmentEtkinlikPaylasToEtkinlikPaylasFragment(latitudeStr,longitudeStr,sehir,ilce);
-                Navigation.findNavController(view).navigate(gecis);
 
                 Toast.makeText(requireContext(), "Konum başarıyla kaydedildi", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(requireContext(), "Lütfen bir konum seçin.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void bundleYolla(String latitudeStr, String longitudeStr, String sehir, String ilce) {
+        EtkinlikPaylasFragment etkinlikPaylasFragment=new EtkinlikPaylasFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("latitudeStr", latitudeStr);
+        bundle.putString("longitudeStr", longitudeStr);
+        bundle.putString("sehir", sehir);
+        bundle.putString("ilce", ilce);
+        etkinlikPaylasFragment.setArguments(bundle);
+
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.mapEtkinlikPin, etkinlikPaylasFragment)
+                .commit();
     }
 
     private void registerLauncher() {

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -41,50 +42,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapViewAna" />
 
-    <Button
-        android:id="@+id/buttonAnasayfa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="main"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewEtkinliklerAnaSayfa" />
-
-    <Button
-        android:id="@+id/buttonMesajlar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mesaj"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonAnasayfa"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewEtkinliklerAnaSayfa" />
-
-    <Button
-        android:id="@+id/buttonPaylas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="paylaş"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonMesajlar"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewEtkinliklerAnaSayfa" />
-
-    <Button
-        android:id="@+id/buttonKaydedilenler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="kayıtlı"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonPaylas"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewEtkinliklerAnaSayfa" />
-
-    <Button
-        android:id="@+id/buttonProfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="profil"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewEtkinliklerAnaSayfa" />
 
     <Button
         android:id="@+id/buttonHaritadaGoster"

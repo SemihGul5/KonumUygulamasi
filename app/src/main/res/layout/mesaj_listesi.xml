@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:clickable="true"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="5dp"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         >

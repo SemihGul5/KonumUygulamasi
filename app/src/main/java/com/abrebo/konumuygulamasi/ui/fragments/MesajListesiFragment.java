@@ -46,7 +46,7 @@ public class MesajListesiFragment extends Fragment {
         firestore=FirebaseFirestore.getInstance();
         auth=FirebaseAuth.getInstance();
         etkinlikLists=new ArrayList<>();
-
+        binding.materialToolbarMesajListesi.setTitle("Mesajlar");
         adapter=new MesajListAdapter(getContext(),etkinlikLists,firestore);
         binding.rvMesajListesi.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvMesajListesi.setAdapter(adapter);
@@ -73,44 +73,47 @@ public class MesajListesiFragment extends Fragment {
                             Set<String> uniqueEtkinlikID = new HashSet<>();
                             for (DocumentSnapshot document : value.getDocuments()) {
                                 String gonderenEmail = document.getString("gonderen_email");
-                                String alici_email = document.getString("alici_email");
+                                String aliciEmail = document.getString("alici_email");
+                                String etkinlikID = document.getString("alici_etkinlik_id");
 
-                                if (gonderenEmail.equals(currentUserEmail)|| alici_email.equals(currentUserEmail)) {
-                                    uniqueEtkinlikID.add(gonderenEmail.equals(currentUserEmail) ? alici_email : gonderenEmail);
+                                if (gonderenEmail.equals(currentUserEmail) || aliciEmail.equals(currentUserEmail)) {
+                                    uniqueEtkinlikID.add(etkinlikID);
                                 }
                             }
 
-                            for (String docID : uniqueEtkinlikID) {
+                            for (String etkinlikID : uniqueEtkinlikID) {
                                 firestore.collection("etkinlikler")
-                                        .whereEqualTo("docID", docID)
+                                        .document(etkinlikID)
                                         .get()
-                                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                             @Override
-                                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                                // Firestore'dan dönen belgeleri işle
-                                                for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                                    Map<String, Object> data = documentSnapshot.getData();
-                                                    String foto=(String) data.get("foto");
-                                                    String foto2=(String) data.get("foto2");
-                                                    String foto3=(String) data.get("foto3");
-                                                    String foto4=(String) data.get("foto4");
-                                                    String ad = (String) data.get("ad");
-                                                    String tur = (String) data.get("tur");
-                                                    String konum = (String) data.get("konum");
-                                                    String aciklama = (String) data.get("aciklama");
-                                                    String enlem = (String) data.get("enlem");
-                                                    String boylam = (String) data.get("boylam");
-                                                    String email = (String) data.get("email");
-                                                    String paylasildi_mi = (String) data.get("paylasildi_mi");
-                                                    String tarih = (String) data.get("tarih");
-                                                    String saat = (String) data.get("saat");
-                                                    String docID = (String) data.get("docID");
+                                            public void onSuccess(DocumentSnapshot etkinlikSnapshot) {
+                                                if (etkinlikSnapshot.exists()) {
+                                                    // Etkinlik varsa işle
+                                                    String foto = etkinlikSnapshot.getString("foto");
+                                                    String foto2 = etkinlikSnapshot.getString("foto2");
+                                                    String foto3 = etkinlikSnapshot.getString("foto3");
+                                                    String foto4 = etkinlikSnapshot.getString("foto4");
+                                                    String ad = etkinlikSnapshot.getString("ad");
+                                                    String tur = etkinlikSnapshot.getString("tur");
+                                                    String konum = etkinlikSnapshot.getString("konum");
+                                                    String aciklama = etkinlikSnapshot.getString("aciklama");
+                                                    String enlem = etkinlikSnapshot.getString("enlem");
+                                                    String boylam = etkinlikSnapshot.getString("boylam");
+                                                    String email = etkinlikSnapshot.getString("email");
+                                                    String paylasildi_mi = etkinlikSnapshot.getString("paylasildi_mi");
+                                                    String tarih = etkinlikSnapshot.getString("tarih");
+                                                    String saat = etkinlikSnapshot.getString("saat");
+                                                    String docID = etkinlikSnapshot.getId();
 
-                                                    Etkinlik etkinlik=new Etkinlik(foto,foto2,foto3,foto4,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
-                                                            tarih,saat,docID);
+                                                    Etkinlik etkinlik = new Etkinlik(foto, foto2, foto3, foto4, ad, tur, konum, aciklama, enlem, boylam, email, paylasildi_mi,
+                                                            tarih, saat, docID);
                                                     etkinlikLists.add(etkinlik);
+                                                    adapter.notifyDataSetChanged();
+                                                } else {
+                                                    // Etkinlik yoksa işle
+                                                    Log.d("Etkinlik", "Belirtilen ID ile eşleşen etkinlik bulunamadı.");
                                                 }
-                                                adapter.notifyDataSetChanged();
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
@@ -126,4 +129,5 @@ public class MesajListesiFragment extends Fragment {
                     }
                 });
     }
+
 }

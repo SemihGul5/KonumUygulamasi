@@ -111,7 +111,7 @@ public class FavorilerimFragment extends Fragment {
                                 adapter.notifyDataSetChanged();
                             } else {
                                 // Belge bulunamadığında yapılacak işlemler
-                                Toast.makeText(getContext(), "Etkinlik bulunamadı", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getContext(), "Etkinlik bulunamadı", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             // Arama yapılırken hata oluştuğunda yapılacak işlemler

@@ -40,7 +40,7 @@ public class MesajAdapter extends RecyclerView.Adapter<MesajAdapter.MesajHolder>
         Mesaj mesaj = mesajs.get(position);
         holder.binding.textViewCardMesaj.setText(mesaj.getMesaj());
         holder.binding.textViewMesajSaati.setText(mesaj.getSaat());
-
+        holder.binding.textViewCardMesajGonderen.setText(mesaj.getGonderen_ad());
 
         if (mesaj.getGonderen_email().equals(userEmail)) {
             // Mesaj kullanıcı tarafından gönderildiyse, sağa yasla ve arkaplan rengini ayarla
