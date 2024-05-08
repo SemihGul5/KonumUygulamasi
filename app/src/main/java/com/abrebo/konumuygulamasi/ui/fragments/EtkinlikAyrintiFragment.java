@@ -117,7 +117,7 @@ public class EtkinlikAyrintiFragment extends Fragment {
 
 
 
-    private void getFavoriMi(String email, String docID) {
+    public void getFavoriMi(String email, String docID) {
         // Kullanıcının emailine göre Firestore'da favoriler koleksiyonunda arama yap
         firestore.collection("favoriler")
                 .whereEqualTo("email", email)

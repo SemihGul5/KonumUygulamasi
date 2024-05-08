@@ -68,6 +68,9 @@
         <action
             android:id="@+id/action_mapsFragmentEtkinlikPaylas_to_etkinlikPaylasFragment"
             app:destination="@id/etkinlikPaylasFragment" />
+        <action
+            android:id="@+id/action_mapsFragmentEtkinlikPaylas_to_anaSayfaFragment"
+            app:destination="@id/anaSayfaFragment" />
     </fragment>
     <fragment
         android:id="@+id/etkinlikAyrintiFragment"
@@ -171,5 +174,9 @@
         android:id="@+id/mapsFragmentEtkinlikPin"
         android:name="com.abrebo.konumuygulamasi.ui.fragments.MapsFragmentEtkinlikPin"
         android:label="fragment_maps_etkinlik_pin"
-        tools:layout="@layout/fragment_maps_etkinlik_pin" />
+        tools:layout="@layout/fragment_maps_etkinlik_pin" >
+        <action
+            android:id="@+id/action_mapsFragmentEtkinlikPin_to_mesajFragment"
+            app:destination="@id/mesajFragment" />
+    </fragment>
 </navigation>

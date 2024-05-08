@@ -3,6 +3,7 @@ package com.abrebo.konumuygulamasi.ui.fragments;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -47,13 +48,29 @@ public class FavorilerimFragment extends Fragment {
         binding.rvFavorilerim.setLayoutManager(new GridLayoutManager(getContext(),2));
         adapter=new EtkinlikAdapter(getContext(),etkinlikList, EtkinlikAdapter.SayfaTuru.FAVORILER_SAYFASI);
         binding.rvFavorilerim.setAdapter(adapter);
-
+        geriTusuIslemleri();
 
 
 
         return binding.getRoot();
     }
+    private void geriTusuIslemleri() {
+        OnBackPressedCallback backButtonCallback = new OnBackPressedCallback(true) {
+            private long backPressedTime = 0;
 
+            @Override
+            public void handleOnBackPressed() {
+                long currentTime = System.currentTimeMillis();
+                if (backPressedTime + 2000 > currentTime) {
+                    requireActivity().finishAffinity();
+                } else {
+                    Toast.makeText(getContext(), "Çıkmak için tekrar basın", Toast.LENGTH_SHORT).show();
+                }
+                backPressedTime = currentTime;
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), backButtonCallback);
+    }
     private void getData(String email, FirebaseFirestore firestore) {
         // Favoriler koleksiyonundan belirli bir kullanıcının favori etkinliklerini getir
         firestore.collection("favoriler")

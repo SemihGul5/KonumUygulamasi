@@ -1,5 +1,6 @@
 package com.abrebo.konumuygulamasi.ui.fragments;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.navigation.Navigation;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -23,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.abrebo.konumuygulamasi.AnaSayfaMainActivity;
 import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.databinding.FragmentMapsEtkinlikPaylasBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -84,6 +87,17 @@ public class MapsFragmentEtkinlikPaylas extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentMapsEtkinlikPaylasBinding.inflate(inflater, container, false);
+
+        OnBackPressedCallback backButtonCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(getContext(), AnaSayfaMainActivity.class);
+                startActivity(intent);
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), backButtonCallback);
+
+
         return binding.getRoot();
     }
 

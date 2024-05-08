@@ -2,6 +2,7 @@ package com.abrebo.konumuygulamasi.ui.fragments;
 
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -50,9 +51,29 @@ public class MesajListesiFragment extends Fragment {
         adapter=new MesajListAdapter(getContext(),etkinlikLists,firestore);
         binding.rvMesajListesi.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvMesajListesi.setAdapter(adapter);
-
+        geriTusuIslemleri();
         getData();
+
+
+
         return binding.getRoot();
+    }
+    private void geriTusuIslemleri() {
+        OnBackPressedCallback backButtonCallback = new OnBackPressedCallback(true) {
+            private long backPressedTime = 0;
+
+            @Override
+            public void handleOnBackPressed() {
+                long currentTime = System.currentTimeMillis();
+                if (backPressedTime + 2000 > currentTime) {
+                    requireActivity().finishAffinity();
+                } else {
+                    Toast.makeText(getContext(), "Çıkmak için tekrar basın", Toast.LENGTH_SHORT).show();
+                }
+                backPressedTime = currentTime;
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), backButtonCallback);
     }
     private void getData() {
         String currentUserEmail = auth.getCurrentUser().getEmail();

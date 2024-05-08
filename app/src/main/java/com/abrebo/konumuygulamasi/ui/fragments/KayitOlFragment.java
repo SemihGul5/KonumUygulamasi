@@ -58,7 +58,7 @@ public class KayitOlFragment extends Fragment {
 
     private void kayitOlButtonTiklandi(View view) {
 
-            binding.kayitOlYapButton.setOnClickListener(view1 -> {
+        binding.kayitOlYapButton.setOnClickListener(view1 -> {
             binding.progressBar.setVisibility(View.VISIBLE);
             adSoyad=binding.adVeSoyadText.getText().toString();
             email=binding.EmailText.getText().toString();

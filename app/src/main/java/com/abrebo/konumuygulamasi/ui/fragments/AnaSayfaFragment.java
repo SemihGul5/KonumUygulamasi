@@ -46,7 +46,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class AnaSayfaFragment extends Fragment implements OnMapReadyCallback{
+public class AnaSayfaFragment extends Fragment{
     private FragmentAnaSayfaBinding binding;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
@@ -54,7 +54,6 @@ public class AnaSayfaFragment extends Fragment implements OnMapReadyCallback{
     private EtkinlikAdapter adapter;
     private String kullaniciSehir="";
     private Boolean oneri;
-    private GoogleMap googleMap;
     private ActivityResultLauncher<String> permissionLauncher;
 
     @Override
@@ -62,13 +61,12 @@ public class AnaSayfaFragment extends Fragment implements OnMapReadyCallback{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentAnaSayfaBinding.inflate(inflater, container, false);
-        binding.materialToolbar.setTitle("Ana Sayfa");
+
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         etkinlikList=new ArrayList<>();
         getKullaniciOneriDurum();
-        binding.mapViewAna.onCreate(savedInstanceState);
-        binding.mapViewAna.getMapAsync(this);
+
 
         binding.recyclerViewEtkinliklerAnaSayfa.setLayoutManager(new GridLayoutManager(getContext(),2));
         adapter=new EtkinlikAdapter(getContext(),etkinlikList, EtkinlikAdapter.SayfaTuru.ANA_SAYFA);
@@ -83,26 +81,7 @@ public class AnaSayfaFragment extends Fragment implements OnMapReadyCallback{
 
 
 
-
-
-
-
-
         return binding.getRoot();
-    }
-
-
-
-    @Override
-    public void onMapReady(@NonNull GoogleMap map) {
-        googleMap = map;
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
-        LatLng startPoint = new LatLng(38.3935, 27.1591);
-
-        float zoomLevel = 15.0f;
-
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPoint, zoomLevel));
     }
 
 
