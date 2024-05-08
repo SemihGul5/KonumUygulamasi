@@ -28,4 +28,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialToolbarFavorilerim" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/pacifico"
+        android:text="Favorilerim"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/materialToolbarFavorilerim"
+        app:layout_constraintEnd_toEndOf="@+id/materialToolbarFavorilerim"
+        app:layout_constraintStart_toStartOf="@+id/materialToolbarFavorilerim"
+        app:layout_constraintTop_toTopOf="@+id/materialToolbarFavorilerim" />
 </androidx.constraintlayout.widget.ConstraintLayout>

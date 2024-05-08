@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,8 @@ import com.abrebo.konumuygulamasi.data.models.Etkinlik;
 import com.abrebo.konumuygulamasi.databinding.FragmentEtkinlikAyrintiBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -115,7 +118,14 @@ public class EtkinlikAyrintiFragment extends Fragment {
         return binding.getRoot();
     }
 
-
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        BottomAppBar bottomAppBar = requireActivity().findViewById(R.id.bottomAppBar);
+        FloatingActionButton fab=requireActivity().findViewById(R.id.fab);
+        bottomAppBar.setVisibility(View.VISIBLE);
+        fab.setVisibility(View.VISIBLE);
+    }
 
     public void getFavoriMi(String email, String docID) {
         // Kullanıcının emailine göre Firestore'da favoriler koleksiyonunda arama yap

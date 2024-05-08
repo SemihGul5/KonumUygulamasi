@@ -14,12 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.data.models.Etkinlik;
 import com.abrebo.konumuygulamasi.data.models.Mesaj;
 import com.abrebo.konumuygulamasi.databinding.FragmentMesajBinding;
 import com.abrebo.konumuygulamasi.ui.adapters.MesajAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -86,6 +89,15 @@ public class MesajFragment extends Fragment {
 
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        BottomAppBar bottomAppBar = requireActivity().findViewById(R.id.bottomAppBar);
+        FloatingActionButton fab=requireActivity().findViewById(R.id.fab);
+        bottomAppBar.setVisibility(View.GONE);
+        fab.setVisibility(View.GONE);
     }
 
     private void mesajGonder() {
