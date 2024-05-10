@@ -90,6 +90,9 @@
         <action
             android:id="@+id/action_etkinlikAyrintiFragment_to_etkinlikBildirFragment"
             app:destination="@id/etkinlikBildirFragment" />
+        <action
+            android:id="@+id/action_etkinlikAyrintiFragment_to_baskasininProfiliFragment"
+            app:destination="@id/baskasininProfiliFragment" />
     </fragment>
     <fragment
         android:id="@+id/ayarlarFragment"
@@ -221,4 +224,13 @@
         android:name="com.abrebo.konumuygulamasi.ui.fragments.KisilikBilgilerFragment"
         android:label="fragment_kisilik_bilgiler"
         tools:layout="@layout/fragment_kisilik_bilgiler" />
+    <fragment
+        android:id="@+id/baskasininProfiliFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.BaskasininProfiliFragment"
+        android:label="fragment_baskasinin_profili"
+        tools:layout="@layout/fragment_baskasinin_profili" >
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -26,14 +26,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/etkinlik_ayrinti_menu"
-            app:titleTextColor="@color/black" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:outlineSpotShadowColor="@color/white"
+            app:titleTextColor="@color/white" />
 
 
         <ImageView
             android:id="@+id/imageViewEtkinlikAyrintiFoto"
             android:layout_width="0dp"
             android:layout_height="200dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="56dp"
             android:src="@drawable/baseline_add_a_photo_24"
             app:layout_constraintBottom_toTopOf="@+id/linearLayoutb5"
             app:layout_constraintEnd_toEndOf="parent"
@@ -277,10 +279,33 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="64dp"
-            android:src="@drawable/baseline_bookmark_add_24"
+            android:src="@drawable/baseline_bookmark_add_24_beyaz"
             app:layout_constraintBottom_toBottomOf="@+id/materialToolbarEtkinlikAyrinti"
             app:layout_constraintEnd_toEndOf="@+id/materialToolbarEtkinlikAyrinti"
             app:layout_constraintTop_toTopOf="@+id/materialToolbarEtkinlikAyrinti" />
+
+        <TextView
+            android:id="@+id/textViewPaylasanKisi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="paylaşan isim"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageViewEtkinlikAyrintiFoto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialToolbarEtkinlikAyrinti"
+            app:srcCompat="@drawable/baseline_person_24" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.abrebo.konumuygulamasi.ui.fragments;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.databinding.FragmentProfilimBinding;
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -54,6 +57,16 @@ public class ProfilimFragment extends Fragment {
         });
         return binding.getRoot();
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        BottomAppBar bottomAppBar = requireActivity().findViewById(R.id.bottomAppBar);
+        FloatingActionButton fab=requireActivity().findViewById(R.id.fab);
+        bottomAppBar.setVisibility(View.VISIBLE);
+        fab.setVisibility(View.VISIBLE);
+    }
+
     private void geriTusuIslemleri() {
         OnBackPressedCallback backButtonCallback = new OnBackPressedCallback(true) {
             private long backPressedTime = 0;

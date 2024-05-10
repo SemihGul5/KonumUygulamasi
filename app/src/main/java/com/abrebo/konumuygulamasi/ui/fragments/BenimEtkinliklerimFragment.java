@@ -29,7 +29,6 @@ public class BenimEtkinliklerimFragment extends Fragment {
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
     private String email;
-    private ArrayList<String> docIDListesi;
     private ArrayList<Etkinlik> etkinlikList;
     private EtkinlikAdapter adapter;
     @Override
@@ -40,9 +39,9 @@ public class BenimEtkinliklerimFragment extends Fragment {
         firestore=FirebaseFirestore.getInstance();
         auth=FirebaseAuth.getInstance();
         email=auth.getCurrentUser().getEmail();
-        docIDListesi = new ArrayList<>();
         etkinlikList=new ArrayList<>();
         getData(email,firestore);
+
         binding.rvBenimEtkinliklerim.setLayoutManager(new GridLayoutManager(getContext(),2));
         adapter=new EtkinlikAdapter(getContext(),etkinlikList, EtkinlikAdapter.SayfaTuru.ETKINLIKLERIM_SAYFASI);
         binding.rvBenimEtkinliklerim.setAdapter(adapter);
@@ -59,58 +58,36 @@ public class BenimEtkinliklerimFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            // Etkinlik DocID'lerini al ve ArrayList'e ekle
-                            String etkinlikDocID = document.getString("docID");
-                            docIDListesi.add(etkinlikDocID);
+                            Map<String, Object> data = document.getData();
+                            if (data != null&&!data.isEmpty()) {
+                                String foto = (String) data.get("foto");
+                                String foto2=(String) data.get("foto2");
+                                String foto3=(String) data.get("foto3");
+                                String foto4=(String) data.get("foto4");
+                                String ad = (String) data.get("ad");
+                                String tur = (String) data.get("tur");
+                                String konum = (String) data.get("konum");
+                                String aciklama = (String) data.get("aciklama");
+                                String enlem = (String) data.get("enlem");
+                                String boylam = (String) data.get("boylam");
+                                String email2 = (String) data.get("email");
+                                String paylasildi_mi = (String) data.get("paylasildi_mi");
+                                String tarih = (String) data.get("tarih");
+                                String saat = (String) data.get("saat");
+                                String docID2 = document.getId();
+
+                                // Yeni etkinlik nesnesi oluştur ve listeye ekle
+                                Etkinlik etkinlik = new Etkinlik(foto,foto2,foto3,foto4, ad, tur, konum, aciklama, enlem, boylam, email2, paylasildi_mi,
+                                        tarih, saat, docID2);
+                                etkinlikList.add(etkinlik);
+                            }
+                            adapter.notifyDataSetChanged();
                         }
-                        aramaYap(docIDListesi);
                     } else {
                         Toast.makeText(getContext(), "Etkinlikler alınamadı", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private void aramaYap(ArrayList<String> docIDListesi) {
-        for (String docID : docIDListesi) {
-            firestore.collection("etkinlikler")
-                    .document(docID)
-                    .get()
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                Map<String, Object> data = document.getData();
-                                if (data != null&&!data.isEmpty()) {
-                                    String foto = (String) data.get("foto");
-                                    String foto2=(String) data.get("foto2");
-                                    String foto3=(String) data.get("foto3");
-                                    String foto4=(String) data.get("foto4");
-                                    String ad = (String) data.get("ad");
-                                    String tur = (String) data.get("tur");
-                                    String konum = (String) data.get("konum");
-                                    String aciklama = (String) data.get("aciklama");
-                                    String enlem = (String) data.get("enlem");
-                                    String boylam = (String) data.get("boylam");
-                                    String email = (String) data.get("email");
-                                    String paylasildi_mi = (String) data.get("paylasildi_mi");
-                                    String tarih = (String) data.get("tarih");
-                                    String saat = (String) data.get("saat");
-                                    String docID2 = document.getId();
 
-                                    // Yeni etkinlik nesnesi oluştur ve listeye ekle
-                                    Etkinlik etkinlik = new Etkinlik(foto,foto2,foto3,foto4, ad, tur, konum, aciklama, enlem, boylam, email, paylasildi_mi,
-                                            tarih, saat, docID2);
-                                    etkinlikList.add(etkinlik);
-                                }
-                                adapter.notifyDataSetChanged();
-                            } else {
-                                Toast.makeText(getContext(), "Etkinlik bulunamadı", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(getContext(), "Etkinlik aranırken hata oluştu", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        }
-    }
 }

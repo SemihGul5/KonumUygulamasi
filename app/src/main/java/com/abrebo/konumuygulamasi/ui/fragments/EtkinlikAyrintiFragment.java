@@ -8,7 +8,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -21,8 +20,10 @@ import android.widget.Toast;
 import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.data.models.Etkinlik;
 import com.abrebo.konumuygulamasi.databinding.FragmentEtkinlikAyrintiBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +31,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -41,6 +43,7 @@ public class EtkinlikAyrintiFragment extends Fragment {
     FirebaseAuth auth;
     String email;
     Boolean favoriMi;
+    private String etkinlikPaylasanIsim;
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +62,8 @@ public class EtkinlikAyrintiFragment extends Fragment {
         binding.etkinlikAyrintiTarihSaat.setText(etkinlik.getTarih()+" "+etkinlik.getSaat());
         binding.etkinlikAyrintiTur.setText(etkinlik.getTur());
         binding.etkinlikAyrintiAciklama.setText(etkinlik.getAciklama());
-
+        binding.etkinlikAyrintiKonum.setText(etkinlik.getKonum());
+        getEtkinlikSahibiAd(etkinlik.getEmail());
         getFavoriMi(auth.getCurrentUser().getEmail(),etkinlik.getDocID());
 
 
@@ -112,10 +116,36 @@ public class EtkinlikAyrintiFragment extends Fragment {
             }
         });
 
+        binding.textViewPaylasanKisi.setOnClickListener(view -> {
+            EtkinlikAyrintiFragmentDirections.ActionEtkinlikAyrintiFragmentToBaskasininProfiliFragment gecis=
+                    EtkinlikAyrintiFragmentDirections.actionEtkinlikAyrintiFragmentToBaskasininProfiliFragment(etkinlik.getEmail());
+            Navigation.findNavController(view).navigate(gecis);
+        });
+
 
 
 
         return binding.getRoot();
+    }
+
+    private void getEtkinlikSahibiAd(String email) {
+        firestore.collection("kullanicilar")
+                .whereEqualTo("email",email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Map<String, Object> data = document.getData();
+                                if (data != null && !data.isEmpty()) {
+                                    etkinlikPaylasanIsim = (String) data.get("adSoyad");
+                                    binding.textViewPaylasanKisi.setText(etkinlikPaylasanIsim);
+                                }
+                            }
+                        }
+                    }
+                });
     }
 
     @Override
@@ -139,11 +169,11 @@ public class EtkinlikAyrintiFragment extends Fragment {
                         if (!task.getResult().isEmpty()) {
                             // Favoride var
                             favoriMi=true;
-                            binding.imageViewFavorilereEkle.setImageResource(R.drawable.baseline_bookmark_added_24);
+                            binding.imageViewFavorilereEkle.setImageResource(R.drawable.baseline_bookmark_added_24_beyaz);
                         } else {
                             // Favoride yok, ekle
                             favoriMi=false;;
-                            binding.imageViewFavorilereEkle.setImageResource(R.drawable.baseline_bookmark_add_24);
+                            binding.imageViewFavorilereEkle.setImageResource(R.drawable.baseline_bookmark_add_24_beyaz);
                         }
                     } else {
                         // Firestore sorgusu başarısız oldu
@@ -166,7 +196,7 @@ public class EtkinlikAyrintiFragment extends Fragment {
                                 .delete()
                                 .addOnSuccessListener(aVoid -> {
                                     Toast.makeText(getContext(), "Etkinlik favorilerden kaldırıldı", Toast.LENGTH_SHORT).show();
-                                    binding.imageViewFavorilereEkle.setImageResource(R.drawable.baseline_bookmark_add_24);
+                                    binding.imageViewFavorilereEkle.setImageResource(R.drawable.baseline_bookmark_add_24_beyaz);
                                 })
                                 .addOnFailureListener(e -> {
                                     Toast.makeText(getContext(), "Etkinlik favorilerden kaldırılırken hata oluştu: " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -190,7 +220,7 @@ public class EtkinlikAyrintiFragment extends Fragment {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(getContext(), "Favorilere eklendi", Toast.LENGTH_SHORT).show();
-                        binding.imageViewFavorilereEkle.setImageResource(R.drawable.baseline_bookmark_added_24);
+                        binding.imageViewFavorilereEkle.setImageResource(R.drawable.baseline_bookmark_added_24_beyaz);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

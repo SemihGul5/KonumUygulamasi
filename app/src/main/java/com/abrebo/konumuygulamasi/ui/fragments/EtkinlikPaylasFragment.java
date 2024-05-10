@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.abrebo.konumuygulamasi.MainActivity;
 import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.data.models.ImageUtil;
 import com.abrebo.konumuygulamasi.databinding.FragmentEtkinlikPaylasBinding;
@@ -77,7 +78,6 @@ public class EtkinlikPaylasFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentEtkinlikPaylasBinding.inflate(inflater, container, false);
-        binding.toolbarEtkinlikEkle.setTitle("Etkinlik Paylaş");
         //etkinlik türünün başlatılması
         turBaslat();
         imageDatalist=new ArrayList<>();
@@ -282,6 +282,9 @@ public class EtkinlikPaylasFragment extends Fragment {
                             .addOnSuccessListener(documentReference -> {
                         Toast.makeText(getContext(), "Paylaşıldı", Toast.LENGTH_SHORT).show();
                         temizle();
+                        Intent intent=new Intent(getContext(), MainActivity.class);
+                        startActivity(intent);
+
                     }).addOnFailureListener(e -> {
                         Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                     }).addOnCompleteListener(task -> {
@@ -311,6 +314,7 @@ public class EtkinlikPaylasFragment extends Fragment {
         turler.add("Seminer");
         turler.add("Yemek");
         turler.add("Spor");
+        turler.add("Oyun");
         turler.add("Parti");
         turler.add("Diğer");
         ArrayAdapter arrayAdapter= new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,turler);

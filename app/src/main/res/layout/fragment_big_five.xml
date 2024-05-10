@@ -8,10 +8,12 @@
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.fragments.BigFiveFragment" >
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbarAnket"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:subtitleTextColor="@color/white"
         android:background="?attr/colorPrimary"
         android:fontFamily="@font/roboto"
         android:textAlignment="center"
@@ -1015,4 +1017,5 @@
 
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

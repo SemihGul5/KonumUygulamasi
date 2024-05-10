@@ -8,6 +8,8 @@
         <item name="colorPrimaryVariant">@color/anaRenk</item>
         <item name="colorSecondary">@color/white</item>
         <item name="colorSecondaryContainer">#79D1D0D0</item>
+        <item name="actionOverflowButtonStyle">@style/optColor</item>
+        <item name="android:actionOverflowMenuStyle">@style/AcikOverflowMenuStyle</item>
     </style>
 
     <style name="Theme.KonumUygulamasi" parent="Base.Theme.KonumUygulamasi" />
@@ -30,5 +32,15 @@
         <!-- inactive track color (30% transparency) -->
         <item name="android:colorForeground">#42221f1f
         </item>
+    </style>
+
+
+    <style name="optColor" parent="Widget.AppCompat.Light.ActionButton.Overflow">
+        <item name="tint">@color/white</item>
+    </style>
+    <style name="AcikOverflowMenuStyle" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <!-- Taşma menüsü için özelleştirmeler -->
+        <item name="android:popupBackground">@drawable/beyaz_overflow_menu_background</item>
+        <!-- Diğer özellikler -->
     </style>
 </resources>

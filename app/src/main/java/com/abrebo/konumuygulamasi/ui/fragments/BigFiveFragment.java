@@ -19,6 +19,8 @@ import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.databinding.FragmentBigFiveBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -61,7 +63,7 @@ public class BigFiveFragment extends Fragment {
             public void onKisilikReceived(String kisilikValue) {
                 if (!kisilikValue.equals("null")) {
                     binding.kisilikTestButton.setEnabled(false);
-                    binding.anketDurumText.setTextColor(ContextCompat.getColor(requireContext(), R.color.anaRenk));
+                    binding.anketDurumText.setTextColor(ContextCompat.getColor(getContext(), R.color.anaRenk));
                     binding.anketDurumText.setText("Kişilik durum testi tamamlandı : " + kisilikValue+" : "+getKisilikAciklama(kisilikValue,kisilikValue));
                     kisilikGuncelle(firestore,auth,"true");
                 } else {
@@ -85,6 +87,16 @@ public class BigFiveFragment extends Fragment {
 
         return binding.getRoot();
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        BottomAppBar bottomAppBar = requireActivity().findViewById(R.id.bottomAppBar);
+        FloatingActionButton fab=requireActivity().findViewById(R.id.fab);
+        bottomAppBar.setVisibility(View.GONE);
+        fab.setVisibility(View.GONE);
+    }
+
     private void getKullaniciKisilik(FirebaseFirestore firestore, FirebaseAuth auth, KisilikCallback callback) {
         firestore.collection("kullanicilar")
                 .whereEqualTo("email", auth.getCurrentUser().getEmail())
@@ -169,7 +181,7 @@ public class BigFiveFragment extends Fragment {
 
                             // TextView'da gösterme işlemi burada gerçekleştirilebilir
                             binding.anketDurumText.setText(highestProbabilityTrait+" : "+getKisilikAciklama(highestProbabilityTrait,highestProbabilityTrait));
-                            binding.anketDurumText.setTextColor(ContextCompat.getColor(requireContext(), R.color.anaRenk));
+                            binding.anketDurumText.setTextColor(ContextCompat.getColor(getContext(), R.color.anaRenk));
 
                             kisilikDurumGuncelle(highestProbabilityTrait,firestore);
                             binding.kisilikTestButton.setEnabled(false);
@@ -195,7 +207,7 @@ public class BigFiveFragment extends Fragment {
                 for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                     // Belirli bir kritere uyan belgeyi güncelle
                     String userId = document.getId();
-                    firestore.collection("kullanicilar").document(userId).update("kişilik", highestProbabilityTrait);
+                    firestore.collection("kullanicilar").document(userId).update("kisilik", highestProbabilityTrait);
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

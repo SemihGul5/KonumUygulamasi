@@ -23,7 +23,8 @@ public class EtkinlikAdapter extends RecyclerView.Adapter<EtkinlikAdapter.Etkinl
     public enum SayfaTuru {
         ANA_SAYFA,
         FAVORILER_SAYFASI,
-        ETKINLIKLERIM_SAYFASI
+        ETKINLIKLERIM_SAYFASI,
+        BASKASININ_PROFILI
     }
 
     private SayfaTuru sayfaTuru;
@@ -70,6 +71,8 @@ public class EtkinlikAdapter extends RecyclerView.Adapter<EtkinlikAdapter.Etkinl
             Navigation.findNavController(view).navigate(gecis);
         }else if (sayfaTuru==SayfaTuru.ETKINLIKLERIM_SAYFASI){
             Toast.makeText(mContext, "Ayrıntısına gidilecek, benim etkinliğim", Toast.LENGTH_SHORT).show();
+        } else if (sayfaTuru==SayfaTuru.BASKASININ_PROFILI) {
+            Toast.makeText(mContext, "Ayrıntısına gidilecek, başkasının profili", Toast.LENGTH_SHORT).show();
         }
 
     }
