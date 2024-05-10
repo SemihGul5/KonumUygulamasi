@@ -10,11 +10,12 @@ public class Kullanici implements Serializable {
     private String cinsiyet;
     private String kisilik;
     private String kisilik_durum;
+    private String foto;
 
     public Kullanici() {
     }
 
-    public Kullanici(String adSoyad, String kullaniciAdi, String email, String dogumTarihi, String cinsiyet, String kisilik, String kisilik_durum) {
+    public Kullanici(String adSoyad, String kullaniciAdi, String email, String dogumTarihi, String cinsiyet, String kisilik, String kisilik_durum,String foto) {
         this.adSoyad = adSoyad;
         this.kullaniciAdi = kullaniciAdi;
         this.email = email;
@@ -22,6 +23,7 @@ public class Kullanici implements Serializable {
         this.cinsiyet = cinsiyet;
         this.kisilik = kisilik;
         this.kisilik_durum = kisilik_durum;
+        this.foto=foto;
     }
 
     public String getAdSoyad() {
@@ -79,5 +81,13 @@ public class Kullanici implements Serializable {
 
     public void setKisilik_durum(String kisilik_durum) {
         this.kisilik_durum = kisilik_durum;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

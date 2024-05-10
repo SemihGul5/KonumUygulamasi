@@ -121,7 +121,11 @@ public class EtkinlikAyrintiFragment extends Fragment {
                     EtkinlikAyrintiFragmentDirections.actionEtkinlikAyrintiFragmentToBaskasininProfiliFragment(etkinlik.getEmail());
             Navigation.findNavController(view).navigate(gecis);
         });
-
+        binding.imageView4.setOnClickListener(view -> {
+            EtkinlikAyrintiFragmentDirections.ActionEtkinlikAyrintiFragmentToBaskasininProfiliFragment gecis=
+                    EtkinlikAyrintiFragmentDirections.actionEtkinlikAyrintiFragmentToBaskasininProfiliFragment(etkinlik.getEmail());
+            Navigation.findNavController(view).navigate(gecis);
+        });
 
 
 
@@ -140,7 +144,10 @@ public class EtkinlikAyrintiFragment extends Fragment {
                                 Map<String, Object> data = document.getData();
                                 if (data != null && !data.isEmpty()) {
                                     etkinlikPaylasanIsim = (String) data.get("adSoyad");
+                                    String foto = (String) data.get("foto");
                                     binding.textViewPaylasanKisi.setText(etkinlikPaylasanIsim);
+                                    Picasso.get().load(foto)
+                                            .into(binding.imageView4);
                                 }
                             }
                         }

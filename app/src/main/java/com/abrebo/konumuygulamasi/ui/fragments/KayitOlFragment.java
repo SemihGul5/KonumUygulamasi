@@ -151,6 +151,7 @@ public class KayitOlFragment extends Fragment {
         data.put("kisilik","null");
         data.put("kisilik_durum","true");
         data.put("oneri_durum",true);
+        data.put("foto","https://firebasestorage.googleapis.com/v0/b/etkinlikdavet-1002d.appspot.com/o/images%2F9cf00459-76f0-4b6e-bfc1-fdf2fa43a48c_1.jpg?alt=media&token=60948aa3-277b-40b0-8b94-041551b92926");
         firestore.collection("kullanicilar").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {

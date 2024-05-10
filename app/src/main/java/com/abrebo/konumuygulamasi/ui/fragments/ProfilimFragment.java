@@ -23,6 +23,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.Map;
 
@@ -101,12 +102,15 @@ public class ProfilimFragment extends Fragment {
                                 String ad = (String) data.get("adSoyad");
                                 String yas = (String) data.get("yas");
                                 String kisilik = (String) data.get("kisilik");
-
+                                String foto = (String) data.get("foto");
                                 String isim=ad;
                                 binding.textViewKullaniciIsmi.setText(isim);
                                 binding.textViewKullaniciEmail.setText(email);
                                 binding.textViewTelBilgi.setText(yas);
                                 binding.textViewKisilikBilgi.setText(kisilik);
+
+                                Picasso.get().load(foto)
+                                        .into(binding.imageViewProfilResim);
                             }
                         }
                     }

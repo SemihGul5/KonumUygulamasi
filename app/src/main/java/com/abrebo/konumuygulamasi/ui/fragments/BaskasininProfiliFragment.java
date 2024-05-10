@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -129,10 +130,12 @@ public class BaskasininProfiliFragment extends Fragment {
                                     String kisilik = (String) data.get("kisilik");
                                     String kisilik_durum = (String) data.get("kisilik_durum");
                                     kullanici_isim = (String) data.get("kullaniciAdi");
-
-                                    kullanici=new Kullanici(adSoyad,kullanici_isim,email1,dogumTarihi,cinsiyet,kisilik,kisilik_durum);
+                                    String foto = (String) data.get("foto");
+                                    kullanici=new Kullanici(adSoyad,kullanici_isim,email1,dogumTarihi,cinsiyet,kisilik,kisilik_durum,foto);
                                     binding.materialToolbar3.setTitle(kullanici.getKullaniciAdi());
                                     binding.textViewProfiliAd.setText(kullanici.getAdSoyad());
+                                    Picasso.get().load(kullanici.getFoto())
+                                            .into(binding.imageView5);
 
                                 }
                             }
