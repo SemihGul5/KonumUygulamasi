@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,21 @@ public class ProfilimFragment extends Fragment {
         auth=FirebaseAuth.getInstance();
         getData();
 
+        binding.linearLayoutAyarlar.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_profilimFragment_to_ayarlarFragment);
+        });
+        binding.linearLayoutMesajlar.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_profilimFragment_to_benimEtkinliklerimFragment);
+        });
+        binding.linearLayoutKisilikTesti.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_profilimFragment_to_bigFiveFragment);
+        });
+        binding.textViewGitProfilimFragment.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_profilimFragment_to_kisiselBilgiDegistirFragment);
+        });
+        binding.textViewGitSifreDegistir.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_profilimFragment_to_sifreDegisFragment);
+        });
         return binding.getRoot();
     }
     private void geriTusuIslemleri() {
@@ -70,13 +86,13 @@ public class ProfilimFragment extends Fragment {
                                 Map<String, Object> data = documentSnapshot.getData();
 
                                 String ad = (String) data.get("adSoyad");
-                                String tel = (String) data.get("tel");
+                                String yas = (String) data.get("yas");
                                 String kisilik = (String) data.get("kisilik");
 
                                 String isim=ad;
                                 binding.textViewKullaniciIsmi.setText(isim);
                                 binding.textViewKullaniciEmail.setText(email);
-                                binding.textViewTelBilgi.setText(tel);
+                                binding.textViewTelBilgi.setText(yas);
                                 binding.textViewKisilikBilgi.setText(kisilik);
                             }
                         }

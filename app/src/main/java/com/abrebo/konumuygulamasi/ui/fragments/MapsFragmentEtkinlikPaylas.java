@@ -87,7 +87,7 @@ public class MapsFragmentEtkinlikPaylas extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentMapsEtkinlikPaylasBinding.inflate(inflater, container, false);
-
+        binding.buttonKonumKaydet.setVisibility(View.VISIBLE);
         OnBackPressedCallback backButtonCallback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -141,9 +141,9 @@ public class MapsFragmentEtkinlikPaylas extends Fragment {
         bundle.putString("sehir", sehir);
         bundle.putString("ilce", ilce);
         etkinlikPaylasFragment.setArguments(bundle);
-
+        binding.buttonKonumKaydet.setVisibility(View.INVISIBLE);
         getParentFragmentManager().beginTransaction()
-                .replace(R.id.mapEtkinlikPin, etkinlikPaylasFragment)
+                .replace(R.id.mapEtkinlikKonumCons, etkinlikPaylasFragment)
                 .commit();
     }
 

@@ -290,10 +290,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Telefon"
-                                android:textStyle="bold"
+                                android:text="Yaş"
                                 android:textColor="@color/anaRenk"
-                                android:textSize="18sp" />
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/textViewTelBilgi"

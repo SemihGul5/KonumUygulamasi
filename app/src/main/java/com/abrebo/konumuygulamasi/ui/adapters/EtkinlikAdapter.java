@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
@@ -21,7 +22,8 @@ public class EtkinlikAdapter extends RecyclerView.Adapter<EtkinlikAdapter.Etkinl
 
     public enum SayfaTuru {
         ANA_SAYFA,
-        FAVORILER_SAYFASI
+        FAVORILER_SAYFASI,
+        ETKINLIKLERIM_SAYFASI
     }
 
     private SayfaTuru sayfaTuru;
@@ -66,6 +68,8 @@ public class EtkinlikAdapter extends RecyclerView.Adapter<EtkinlikAdapter.Etkinl
             FavorilerimFragmentDirections.ActionFavorilerimFragmentToEtkinlikAyrintiFragment gecis=
                     FavorilerimFragmentDirections.actionFavorilerimFragmentToEtkinlikAyrintiFragment(etkinlik);
             Navigation.findNavController(view).navigate(gecis);
+        }else if (sayfaTuru==SayfaTuru.ETKINLIKLERIM_SAYFASI){
+            Toast.makeText(mContext, "Ayrıntısına gidilecek, benim etkinliğim", Toast.LENGTH_SHORT).show();
         }
 
     }

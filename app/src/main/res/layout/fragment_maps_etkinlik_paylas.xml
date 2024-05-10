@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/pacifico"
-        android:text="Etkinlik Konumu Seç"
+        android:text="@string/etkinlik_konumu_sec"
         android:textColor="@color/white"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@+id/materialToolbarMapsEtkinlikPaylas"

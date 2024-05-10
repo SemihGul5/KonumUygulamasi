@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.KisilikBilgilerFragment" >
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pacifico"
+        android:text="Kişilikler"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/materialToolbar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/materialToolbar2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar2">
+
+        <TextView
+            android:id="@+id/textView11"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="16dp"
+            android:text="Büyük Beş kişilik özelliği modeli, kişilik psikolojisinde önemli bir yer tutar. Bu modelin temelinde beş ana faktör bulunur: Açıklık, Sorumluluk, Dışadönüklük, Uyumluluk ve Duygusal Dengelilik. Bu beş faktör, genellikle OCEAN olarak kısaltılır. Her bir faktör, belirli kişilik özelliklerinin bir bileşimi olarak düşünülür.
+\n\n
+Açıklık: Sanatı takdir etme, yeni deneyimlere açıklık, hayal gücü ve çeşitli deneyimlere ilgi duyma gibi özellikleri içerir.\n
+Sorumluluk: Kendi kendine disiplin, planlı hareket etme ve hedeflere ulaşmak için kararlılık gibi özellikleri kapsar.\n
+Dışadönüklük: Sosyal olma, enerjiklik, olumlu duyguları paylaşma ve başkalarıyla etkileşim kurma eğilimini ifade eder.\n
+Uyumluluk: Empati, merhamet ve işbirliği yapmaya istekli olma gibi özellikleri içerir.\n
+Duygusal Dengelilik: Duygusal istikrar, stresle başa çıkma ve duygusal tepkilerin kontrolü gibi özellikleri ifade eder.\n
+Her bir faktör, belirli bir kişilik özelliğini veya davranış eğilimini temsil eder. Örneğin, yüksek açıklık puanı alan bir kişi, yeni fikirlere ve deneyimlere açık olma eğilimindedir. Ancak, her insanın kişilik profili farklıdır ve istisnalar olabilir. Örneğin, dışadönük bir kişi bile bazen yalnız kalmak isteyebilir.\n\n
+
+Bu model, bireylerin kişilik özelliklerini anlamak ve açıklamak için yaygın olarak kullanılan bir yaklaşımdır. Ancak, her bireyin kişilik profili benzersizdir ve istisnalar olabilir."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

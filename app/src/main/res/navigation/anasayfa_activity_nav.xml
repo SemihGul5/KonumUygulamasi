@@ -102,6 +102,12 @@
         <action
             android:id="@+id/action_ayarlarFragment_to_geriBildirimFragment"
             app:destination="@id/geriBildirimFragment" />
+        <action
+            android:id="@+id/action_ayarlarFragment_to_kisiselBilgiDegistirFragment"
+            app:destination="@id/kisiselBilgiDegistirFragment" />
+        <action
+            android:id="@+id/action_ayarlarFragment_to_kisilikBilgilerFragment"
+            app:destination="@id/kisilikBilgilerFragment" />
     </fragment>
     <fragment
         android:id="@+id/bigFiveFragment"
@@ -144,7 +150,23 @@
         android:id="@+id/profilimFragment"
         android:name="com.abrebo.konumuygulamasi.ui.fragments.ProfilimFragment"
         android:label="fragment_profilim"
-        tools:layout="@layout/fragment_profilim" />
+        tools:layout="@layout/fragment_profilim" >
+        <action
+            android:id="@+id/action_profilimFragment_to_ayarlarFragment"
+            app:destination="@id/ayarlarFragment" />
+        <action
+            android:id="@+id/action_profilimFragment_to_benimEtkinliklerimFragment"
+            app:destination="@id/benimEtkinliklerimFragment" />
+        <action
+            android:id="@+id/action_profilimFragment_to_bigFiveFragment"
+            app:destination="@id/bigFiveFragment" />
+        <action
+            android:id="@+id/action_profilimFragment_to_kisiselBilgiDegistirFragment"
+            app:destination="@id/kisiselBilgiDegistirFragment" />
+        <action
+            android:id="@+id/action_profilimFragment_to_sifreDegisFragment"
+            app:destination="@id/sifreDegisFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mapsFragmentEtkinlikAyrinti"
         android:name="com.abrebo.konumuygulamasi.ui.fragments.MapsFragmentEtkinlikAyrinti"
@@ -179,4 +201,24 @@
             android:id="@+id/action_mapsFragmentEtkinlikPin_to_mesajFragment"
             app:destination="@id/mesajFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/benimEtkinliklerimFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.BenimEtkinliklerimFragment"
+        android:label="fragment_benim_etkinliklerim"
+        tools:layout="@layout/fragment_benim_etkinliklerim" />
+    <fragment
+        android:id="@+id/kisiselBilgiDegistirFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.KisiselBilgiDegistirFragment"
+        android:label="fragment_kisisel_bilgi_degistir"
+        tools:layout="@layout/fragment_kisisel_bilgi_degistir" />
+    <fragment
+        android:id="@+id/sifreDegisFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.SifreDegisFragment"
+        android:label="fragment_sifre_degis"
+        tools:layout="@layout/fragment_sifre_degis" />
+    <fragment
+        android:id="@+id/kisilikBilgilerFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.KisilikBilgilerFragment"
+        android:label="fragment_kisilik_bilgiler"
+        tools:layout="@layout/fragment_kisilik_bilgiler" />
 </navigation>

@@ -14,4 +14,6 @@
     <string name="etkinlik_paylas">Etkinlik Paylaş</string>
     <string name="haritada_goster">Haritada Göster</string>
     <string name="etkinlikleri_haritada_goster">Etkinlikleri Haritada Göster</string>
+    <string name="etkinlik_konumu_sec">Etkinlik Konumu Seç</string>
+    <string name="ayarlar">Ayarlar</string>
 </resources>
