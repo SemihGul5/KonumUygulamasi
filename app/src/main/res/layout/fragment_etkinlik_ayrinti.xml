@@ -30,8 +30,7 @@
             android:outlineSpotShadowColor="@color/white"
             app:titleTextColor="@color/white" />
 
-
-        <ImageView
+<!--<ImageView
             android:id="@+id/imageViewEtkinlikAyrintiFoto"
             android:layout_width="0dp"
             android:layout_height="200dp"
@@ -41,7 +40,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialToolbarEtkinlikAyrinti" />
+            app:layout_constraintTop_toBottomOf="@+id/materialToolbarEtkinlikAyrinti" />  -->
+
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/imageViewEtkinlikAyrintiFoto"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_margin="16dp"
+                app:iss_auto_cycle="true"
+                app:iss_corner_radius="10"
+                app:iss_delay="2000"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayoutb5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                app:iss_period="2000" />
+
 
         <LinearLayout
             android:id="@+id/linearLayoutb5"
@@ -290,6 +305,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="paylaşan isim"
+
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textStyle="bold"

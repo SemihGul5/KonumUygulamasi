@@ -137,6 +137,13 @@ public class BaskasininProfiliFragment extends Fragment {
                                     binding.textViewProfiliAd.setText(kullanici.getAdSoyad());
                                     Picasso.get().load(kullanici.getFoto())
                                             .into(binding.imageView5);
+                                    String tanim="";
+                                    if (kisilik.equals("null")){
+                                        tanim="Henüz kişilik testi yapılmamış";
+                                    }else{
+                                        tanim="Kişilik: "+kisilik;
+                                    }
+                                    binding.textViewKisilikBaskasininProfili.setText(tanim);
 
                                 }
                             }

@@ -203,6 +203,9 @@
         <action
             android:id="@+id/action_mapsFragmentEtkinlikPin_to_mesajFragment"
             app:destination="@id/mesajFragment" />
+        <action
+            android:id="@+id/action_mapsFragmentEtkinlikPin_to_etkinlikAyrintiFragment"
+            app:destination="@id/etkinlikAyrintiFragment" />
     </fragment>
     <fragment
         android:id="@+id/benimEtkinliklerimFragment"

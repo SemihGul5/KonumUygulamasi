@@ -17,8 +17,11 @@ import com.abrebo.konumuygulamasi.ui.fragments.BaskasininProfiliFragmentDirectio
 import com.abrebo.konumuygulamasi.ui.fragments.BenimEtkinliklerimFragment;
 import com.abrebo.konumuygulamasi.ui.fragments.BenimEtkinliklerimFragmentDirections;
 import com.abrebo.konumuygulamasi.ui.fragments.FavorilerimFragmentDirections;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EtkinlikAdapter extends RecyclerView.Adapter<EtkinlikAdapter.EtkinlikCardHolder> {
@@ -52,13 +55,40 @@ public class EtkinlikAdapter extends RecyclerView.Adapter<EtkinlikAdapter.Etkinl
         //Karta foto, ad ve konum yazılması
         Etkinlik etkinlik=etkinlikList.get(position);
 
-        Picasso.get().load(etkinlik.getFoto()).into(holder.binding.imageViewCardEtkinlikFoto);
+        //Picasso.get().load(etkinlik.getFoto()).into(holder.binding.imageViewCardEtkinlikFoto);
+        ArrayList<SlideModel> slideModels=new ArrayList<>();
+        String foto1,foto2,foto3,foto4;
+        foto1=etkinlik.getFoto();
+        foto2=etkinlik.getFoto2();
+        foto3=etkinlik.getFoto3();
+        foto4=etkinlik.getFoto4();
+        SlideModel slideModel1=new SlideModel(foto1, ScaleTypes.CENTER_INSIDE);
+        slideModels.add(slideModel1);
+        if (!"null".equals(foto2)) {
+            SlideModel slideModel2 = new SlideModel(foto2, ScaleTypes.CENTER_INSIDE);
+            slideModels.add(slideModel2);
+        }
+
+        if (!"null".equals(foto3)) {
+            SlideModel slideModel3 = new SlideModel(foto3, ScaleTypes.CENTER_INSIDE);
+            slideModels.add(slideModel3);
+        }
+
+        if (!"null".equals(foto4)) {
+            SlideModel slideModel4 = new SlideModel(foto4, ScaleTypes.CENTER_INSIDE);
+            slideModels.add(slideModel4);
+        }
+
+        holder.binding.imageViewCardEtkinlikFoto.setImageList(slideModels,ScaleTypes.CENTER_INSIDE);
         holder.binding.textViewCardEtkinlikAd.setText(etkinlik.getAd());
         holder.binding.textViewEtkinlikKonum.setText(etkinlik.getKonum());
         holder.binding.textViewTarihVeSaat.setText(etkinlik.getTarih()+" "+etkinlik.getSaat());
         holder.binding.textViewEtkinlikTuru.setText("Etkinlik Türü: "+etkinlik.getTur());
         // etkinlik kart tasarımına tıklandığında
         holder.binding.etkinlikCard.setOnClickListener(view -> {
+            gitAyrinti(view,etkinlik);
+        });
+        holder.binding.imageViewCardEtkinlikFoto.setOnClickListener(view -> {
             gitAyrinti(view,etkinlik);
         });
     }

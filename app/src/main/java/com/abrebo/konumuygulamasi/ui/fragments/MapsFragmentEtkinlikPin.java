@@ -2,6 +2,7 @@ package com.abrebo.konumuygulamasi.ui.fragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -18,12 +19,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.data.models.Etkinlik;
 import com.abrebo.konumuygulamasi.databinding.FragmentMapsEtkinlikPinBinding;
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -209,10 +214,37 @@ public class MapsFragmentEtkinlikPin extends Fragment {
                     }
                 });
 
+        ArrayList<SlideModel> slideModels=new ArrayList<>();
+        String foto1,foto2,foto3,foto4;
+        foto1=etkinlik.getFoto();
+        foto2=etkinlik.getFoto2();
+        foto3=etkinlik.getFoto3();
+        foto4=etkinlik.getFoto4();
+        SlideModel slideModel1=new SlideModel(foto1, ScaleTypes.CENTER_INSIDE);
+        slideModels.add(slideModel1);
+        if (!"null".equals(foto2)) {
+            SlideModel slideModel2 = new SlideModel(foto2, ScaleTypes.CENTER_INSIDE);
+            slideModels.add(slideModel2);
+        }
 
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) ImageView imageView = view.findViewById(R.id.imageViewEtkinlikAyrintiFoto_bottom);
-        Picasso.get().load(etkinlik.getFoto()).resize(150,150)
-                .into(imageView);
+        if (!"null".equals(foto3)) {
+            SlideModel slideModel3 = new SlideModel(foto3, ScaleTypes.CENTER_INSIDE);
+            slideModels.add(slideModel3);
+        }
+
+        if (!"null".equals(foto4)) {
+            SlideModel slideModel4 = new SlideModel(foto4, ScaleTypes.CENTER_INSIDE);
+            slideModels.add(slideModel4);
+        }
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) ImageSlider imageView = view.findViewById(R.id.imageViewEtkinlikAyrintiFoto_bottom);
+        imageView.setImageList(slideModels,ScaleTypes.CENTER_INSIDE);
+
+        imageView.setOnClickListener(view1 -> {
+            bottomSheetDialog.cancel();
+            MapsFragmentEtkinlikPinDirections.ActionMapsFragmentEtkinlikPinToEtkinlikAyrintiFragment gecis=
+                    MapsFragmentEtkinlikPinDirections.actionMapsFragmentEtkinlikPinToEtkinlikAyrintiFragment(etkinlik);
+            Navigation.findNavController(view).navigate(gecis);
+        });
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView textViewAd = view.findViewById(R.id.etkinlik_ayrinti_AD_bottom);
         textViewAd.setText(etkinlik.getAd());
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView textViewTarihVeSaat = view.findViewById(R.id.etkinlik_ayrinti_tarih_saat_bottom);

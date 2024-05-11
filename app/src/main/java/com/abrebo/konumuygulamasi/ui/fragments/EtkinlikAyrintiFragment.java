@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.data.models.Etkinlik;
 import com.abrebo.konumuygulamasi.databinding.FragmentEtkinlikAyrintiBinding;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,6 +36,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,6 +47,8 @@ public class EtkinlikAyrintiFragment extends Fragment {
     String email;
     Boolean favoriMi;
     private String etkinlikPaylasanIsim;
+    ArrayList<SlideModel> slideModels;
+    private String foto1,foto2,foto3,foto4;
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,7 +62,32 @@ public class EtkinlikAyrintiFragment extends Fragment {
         Etkinlik etkinlik=bundle.getEtkinlik();
         binding.materialToolbarEtkinlikAyrinti.setTitle(etkinlik.getAd());
 
-        Picasso.get().load(etkinlik.getFoto()).into(binding.imageViewEtkinlikAyrintiFoto);
+        //Picasso.get().load(etkinlik.getFoto()).into(binding.imageViewEtkinlikAyrintiFoto);
+        foto1=etkinlik.getFoto();
+        foto2=etkinlik.getFoto2();
+        foto3=etkinlik.getFoto3();
+        foto4=etkinlik.getFoto4();
+
+        slideModels=new ArrayList<>();
+        SlideModel slideModel1=new SlideModel(foto1, ScaleTypes.CENTER_INSIDE);
+        slideModels.add(slideModel1);
+        if (!"null".equals(foto2)) {
+            SlideModel slideModel2 = new SlideModel(foto2, ScaleTypes.CENTER_INSIDE);
+            slideModels.add(slideModel2);
+        }
+
+        if (!"null".equals(foto3)) {
+            SlideModel slideModel3 = new SlideModel(foto3, ScaleTypes.CENTER_INSIDE);
+            slideModels.add(slideModel3);
+        }
+
+        if (!"null".equals(foto4)) {
+            SlideModel slideModel4 = new SlideModel(foto4, ScaleTypes.CENTER_INSIDE);
+            slideModels.add(slideModel4);
+        }
+
+        binding.imageViewEtkinlikAyrintiFoto.setImageList(slideModels,ScaleTypes.CENTER_INSIDE);
+
         binding.etkinlikAyrintiAD.setText(etkinlik.getAd());
         binding.etkinlikAyrintiTarihSaat.setText(etkinlik.getTarih()+" "+etkinlik.getSaat());
         binding.etkinlikAyrintiTur.setText(etkinlik.getTur());
