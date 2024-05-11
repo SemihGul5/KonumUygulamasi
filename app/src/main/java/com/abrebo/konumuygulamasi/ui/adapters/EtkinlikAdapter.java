@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.abrebo.konumuygulamasi.data.models.Etkinlik;
 import com.abrebo.konumuygulamasi.databinding.EtkinlikCardBinding;
 import com.abrebo.konumuygulamasi.ui.fragments.AnaSayfaFragmentDirections;
+import com.abrebo.konumuygulamasi.ui.fragments.BaskasininProfiliFragmentDirections;
+import com.abrebo.konumuygulamasi.ui.fragments.BenimEtkinliklerimFragment;
+import com.abrebo.konumuygulamasi.ui.fragments.BenimEtkinliklerimFragmentDirections;
 import com.abrebo.konumuygulamasi.ui.fragments.FavorilerimFragmentDirections;
 import com.squareup.picasso.Picasso;
 
@@ -70,9 +73,13 @@ public class EtkinlikAdapter extends RecyclerView.Adapter<EtkinlikAdapter.Etkinl
                     FavorilerimFragmentDirections.actionFavorilerimFragmentToEtkinlikAyrintiFragment(etkinlik);
             Navigation.findNavController(view).navigate(gecis);
         }else if (sayfaTuru==SayfaTuru.ETKINLIKLERIM_SAYFASI){
-            Toast.makeText(mContext, "Ayrıntısına gidilecek, benim etkinliğim", Toast.LENGTH_SHORT).show();
+            BenimEtkinliklerimFragmentDirections.ActionBenimEtkinliklerimFragmentToBenimEtkinligimAyrintiFragment gecis=
+                    BenimEtkinliklerimFragmentDirections.actionBenimEtkinliklerimFragmentToBenimEtkinligimAyrintiFragment(etkinlik);
+            Navigation.findNavController(view).navigate(gecis);
         } else if (sayfaTuru==SayfaTuru.BASKASININ_PROFILI) {
-            Toast.makeText(mContext, "Ayrıntısına gidilecek, başkasının profili", Toast.LENGTH_SHORT).show();
+            BaskasininProfiliFragmentDirections.ActionBaskasininProfiliFragmentToEtkinlikAyrintiFragment gecis=
+                    BaskasininProfiliFragmentDirections.actionBaskasininProfiliFragmentToEtkinlikAyrintiFragment(etkinlik);
+            Navigation.findNavController(view).navigate(gecis);
         }
 
     }

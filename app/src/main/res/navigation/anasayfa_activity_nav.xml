@@ -208,7 +208,11 @@
         android:id="@+id/benimEtkinliklerimFragment"
         android:name="com.abrebo.konumuygulamasi.ui.fragments.BenimEtkinliklerimFragment"
         android:label="fragment_benim_etkinliklerim"
-        tools:layout="@layout/fragment_benim_etkinliklerim" />
+        tools:layout="@layout/fragment_benim_etkinliklerim" >
+        <action
+            android:id="@+id/action_benimEtkinliklerimFragment_to_benimEtkinligimAyrintiFragment"
+            app:destination="@id/benimEtkinligimAyrintiFragment" />
+    </fragment>
     <fragment
         android:id="@+id/kisiselBilgiDegistirFragment"
         android:name="com.abrebo.konumuygulamasi.ui.fragments.KisiselBilgiDegistirFragment"
@@ -232,5 +236,17 @@
         <argument
             android:name="email"
             app:argType="string" />
+        <action
+            android:id="@+id/action_baskasininProfiliFragment_to_etkinlikAyrintiFragment"
+            app:destination="@id/etkinlikAyrintiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/benimEtkinligimAyrintiFragment"
+        android:name="com.abrebo.konumuygulamasi.ui.fragments.BenimEtkinligimAyrintiFragment"
+        android:label="fragment_benim_etkinligim_ayrinti"
+        tools:layout="@layout/fragment_benim_etkinligim_ayrinti" >
+        <argument
+            android:name="etkinlik"
+            app:argType="com.abrebo.konumuygulamasi.data.models.Etkinlik" />
     </fragment>
 </navigation>
