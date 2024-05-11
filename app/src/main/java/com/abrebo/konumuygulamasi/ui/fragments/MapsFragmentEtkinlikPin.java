@@ -279,7 +279,6 @@ public class MapsFragmentEtkinlikPin extends Fragment {
                 .whereEqualTo("email", auth.getCurrentUser().getEmail())
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    // Favoriler koleksiyonunda belirli bir etkinliğin kaydını bulduk
                     for (QueryDocumentSnapshot snapshot : queryDocumentSnapshots) {
                         // Belirli bir kaydı sil
                         firestore.collection("favoriler")
