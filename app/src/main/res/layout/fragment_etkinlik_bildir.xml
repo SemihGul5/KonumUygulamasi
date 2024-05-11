@@ -75,4 +75,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/pacifico"
+        android:text="Etkinliği Bildir"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/materialToolbarEtkinlikBildir"
+        app:layout_constraintEnd_toEndOf="@+id/materialToolbarEtkinlikBildir"
+        app:layout_constraintStart_toStartOf="@+id/materialToolbarEtkinlikBildir"
+        app:layout_constraintTop_toTopOf="@+id/materialToolbarEtkinlikBildir" />
 </androidx.constraintlayout.widget.ConstraintLayout>

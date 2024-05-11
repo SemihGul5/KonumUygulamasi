@@ -144,9 +144,10 @@ public class AnaSayfaFragment extends Fragment{
                                                 String paylasildi_mi = (String) data.get("paylasildi_mi");
                                                 String tarih = (String) data.get("tarih");
                                                 String saat = (String) data.get("saat");
+                                                String uuid = (String) data.get("uuid");
                                                 String docID=documentSnapshot.getId();
                                                 Etkinlik etkinlik=new Etkinlik(foto,foto2,foto3,foto4,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
-                                                        tarih,saat,docID);
+                                                        tarih,saat,docID,uuid);
                                                 etkinlikList.add(etkinlik);
                                             }
                                             adapter.notifyDataSetChanged();
@@ -188,9 +189,10 @@ public class AnaSayfaFragment extends Fragment{
                                                 String paylasildi_mi = (String) data.get("paylasildi_mi");
                                                 String tarih = (String) data.get("tarih");
                                                 String saat = (String) data.get("saat");
+                                                String uuid = (String) data.get("uuid");
                                                 String docID=documentSnapshot.getId();
                                                 Etkinlik etkinlik=new Etkinlik(foto,foto2,foto3,foto4,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
-                                                        tarih,saat,docID);
+                                                        tarih,saat,docID,uuid);
                                                 etkinlikList.add(etkinlik);
                                             }
                                             adapter.notifyDataSetChanged();

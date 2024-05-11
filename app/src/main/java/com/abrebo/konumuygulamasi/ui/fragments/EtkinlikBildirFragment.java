@@ -31,7 +31,6 @@ public class EtkinlikBildirFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding= FragmentEtkinlikBildirBinding.inflate(inflater, container, false);
-        binding.materialToolbarEtkinlikBildir.setTitle("Etkinlik Bildir");
         EtkinlikBildirFragmentArgs bundle=EtkinlikBildirFragmentArgs.fromBundle(getArguments());
         email=bundle.getEmail();
         docID=bundle.getDocID();

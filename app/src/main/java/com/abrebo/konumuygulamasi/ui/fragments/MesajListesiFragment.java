@@ -134,10 +134,11 @@ public class MesajListesiFragment extends Fragment {
                                                     String paylasildi_mi = etkinlikSnapshot.getString("paylasildi_mi");
                                                     String tarih = etkinlikSnapshot.getString("tarih");
                                                     String saat = etkinlikSnapshot.getString("saat");
+                                                    String uuid = etkinlikSnapshot.getString("uuid");
                                                     String docID = etkinlikSnapshot.getId();
 
                                                     Etkinlik etkinlik = new Etkinlik(foto, foto2, foto3, foto4, ad, tur, konum, aciklama, enlem, boylam, email, paylasildi_mi,
-                                                            tarih, saat, docID);
+                                                            tarih, saat, docID,uuid);
                                                     etkinlikLists.add(etkinlik);
                                                     adapter.notifyDataSetChanged();
                                                 } else {

@@ -82,11 +82,12 @@ public class BaskasininProfiliFragment extends Fragment {
                                 String paylasildi_mi = (String) data.get("paylasildi_mi");
                                 String tarih = (String) data.get("tarih");
                                 String saat = (String) data.get("saat");
+                                String uuid = (String) data.get("uuid");
                                 String docID2 = document.getId();
 
                                 // Yeni etkinlik nesnesi oluştur ve listeye ekle
                                 Etkinlik etkinlik = new Etkinlik(foto,foto2,foto3,foto4, ad, tur, konum, aciklama, enlem, boylam, email2, paylasildi_mi,
-                                        tarih, saat, docID2);
+                                        tarih, saat, docID2,uuid);
                                 etkinlikList.add(etkinlik);
                             }
                             adapter.notifyDataSetChanged();

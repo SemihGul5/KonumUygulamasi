@@ -147,10 +147,11 @@ public class MapsFragmentEtkinlikPin extends Fragment {
                             String paylasildi_mi = document.getString("paylasildi_mi");
                             String tarih = document.getString("tarih");
                             String saat = document.getString("saat");
+                            String uuid = document.getString("saat");
                             String docid=document.getId();
                             
                             Etkinlik etkinlik=new Etkinlik(foto,foto2,foto3,foto4,ad,tur,konum,aciklama,enlem,
-                                    boylam,email,paylasildi_mi,tarih,saat,docid);
+                                    boylam,email,paylasildi_mi,tarih,saat,docid,uuid);
                             etkinliks.add(etkinlik);
 
                             // konumunu al

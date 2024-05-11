@@ -2,6 +2,8 @@ package com.abrebo.konumuygulamasi.ui.fragments;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,12 +15,15 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -29,6 +34,7 @@ import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.data.models.Etkinlik;
 import com.abrebo.konumuygulamasi.data.models.ImageUtil;
 import com.abrebo.konumuygulamasi.databinding.FragmentBenimEtkinligimAyrintiBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -161,9 +167,49 @@ public class BenimEtkinligimAyrintiFragment extends Fragment {
         binding.buttonEtkinlikPaylasBenim.setOnClickListener(view -> {
             etlinlikGuncelle(view);
         });
+        
+        binding.materialToolbar4.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.duzenle_sil) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                    alert.setTitle("Etkinliği Sil");
+                    alert.setMessage("Etkinliği silmek istediğinizden emin misiniz?");
+                    alert.setPositiveButton("EVET", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            // etkinlik bildirisi satfası açılacak
+
+                            gitEtkinlikSil(auth.getCurrentUser().getEmail(),etkinlik.getDocID(),getView());
+                        }
+                    });
+                    alert.setNegativeButton("HAYIR", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+                    alert.show();
+                }
+                return false;
+            }
+        });
 
         return binding.getRoot();
     }
+
+    private void gitEtkinlikSil(String email, String docID, View view) {
+        // Firestore'dan belirli bir etkinliği silmek için gereken kodu buraya yazın
+        firestore.collection("etkinlikler").document(docID)
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(getContext(), "Etkinlik başarıyla silindi", Toast.LENGTH_SHORT).show();
+                    Navigation.findNavController(view).navigate(R.id.action_benimEtkinligimAyrintiFragment_to_benimEtkinliklerimFragment);
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Etkinlik silinirken bir hata oluştu: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                });
+    }
+
 
     private void etlinlikGuncelle(View view) {
         if (binding.editTextEtkinlikAdBenim.getText().toString().isEmpty()
@@ -234,7 +280,7 @@ public class BenimEtkinligimAyrintiFragment extends Fragment {
 
             // Güncellenecek etkinliğin belirteci
             String etkinlikBelirteci = etkinlik.getDocID(); // Etkinliği belirleyen bir ID kullanılmalıdır.
-            Toast.makeText(getContext(), foto, Toast.LENGTH_SHORT).show();
+
             // Yeni verileri bir haritada saklayalım
             HashMap<String, Object> updatedData = new HashMap<>();
             updatedData.put("ad", binding.editTextEtkinlikAdBenim.getText().toString().substring(0, 1).toUpperCase() + binding.editTextEtkinlikAdBenim.getText().toString().substring(1));

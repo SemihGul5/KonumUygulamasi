@@ -18,12 +18,13 @@ public class Etkinlik implements Serializable {
     private String tarih;
     private String saat;
     private String docID;
+    private String uuid;
 
     public Etkinlik() {
     }
 
     public Etkinlik(String foto,String foto2,String foto3,String foto4, String ad, String tur, String konum, String aciklama, String enlem, String boylam,String email,
-                    String paylasildi_mi,String tarih,String saat,String docID) {
+                    String paylasildi_mi,String tarih,String saat,String docID,String uuid) {
         this.foto = foto;
         this.foto2=foto2;
         this.foto3=foto3;
@@ -39,6 +40,7 @@ public class Etkinlik implements Serializable {
         this.tarih=tarih;
         this.saat=saat;
         this.docID=docID;
+        this.uuid=uuid;
     }
 
     public String getFoto() {
@@ -159,5 +161,13 @@ public class Etkinlik implements Serializable {
 
     public void setDocID(String docID) {
         this.docID = docID;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }

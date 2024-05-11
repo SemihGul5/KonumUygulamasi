@@ -248,5 +248,10 @@
         <argument
             android:name="etkinlik"
             app:argType="com.abrebo.konumuygulamasi.data.models.Etkinlik" />
+        <action
+            android:id="@+id/action_benimEtkinligimAyrintiFragment_to_benimEtkinliklerimFragment"
+            app:destination="@id/benimEtkinliklerimFragment"
+            app:popUpTo="@id/benimEtkinligimAyrintiFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
