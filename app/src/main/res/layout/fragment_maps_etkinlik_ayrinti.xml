@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="78dp"
         android:fontFamily="@font/alata"
         android:text="Yol Tarifi"
         app:layout_constraintBottom_toBottomOf="parent"
