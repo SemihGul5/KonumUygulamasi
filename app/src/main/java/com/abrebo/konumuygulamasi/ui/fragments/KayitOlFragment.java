@@ -1,5 +1,6 @@
 package com.abrebo.konumuygulamasi.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.abrebo.konumuygulamasi.MainActivity;
 import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.databinding.FragmentKayitOlBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,13 +62,24 @@ public class KayitOlFragment extends Fragment {
 
         binding.kayitOlYapButton.setOnClickListener(view1 -> {
             binding.progressBar.setVisibility(View.VISIBLE);
-            adSoyad=binding.adVeSoyadText.getText().toString();
-            email=binding.EmailText.getText().toString();
-            sifre=binding.sifreText.getText().toString();
-            sifreTekrar=binding.sifreTekrarText.getText().toString();
-            kullaniciAdi=binding.kullaniciAdiText.getText().toString();
-            dogumTarihi= binding.yasText.getText().toString();
-            int id=binding.radioGroupCinsiyet.getCheckedRadioButtonId();
+            adSoyad = binding.adVeSoyadText.getText().toString();
+            email = binding.EmailText.getText().toString();
+            sifre = binding.sifreText.getText().toString();
+            sifreTekrar = binding.sifreTekrarText.getText().toString();
+            kullaniciAdi = binding.kullaniciAdiText.getText().toString();
+            dogumTarihi = binding.yasText.getText().toString();
+            int id = binding.radioGroupCinsiyet.getCheckedRadioButtonId();
+
+            if (id == -1 || adSoyad.isEmpty() || kullaniciAdi.isEmpty() || dogumTarihi.isEmpty() ||
+                    email.isEmpty() || sifre.isEmpty() || sifreTekrar.isEmpty()) {
+                Snackbar.make(getView(),"Tüm alanları doldurun",Snackbar.LENGTH_SHORT).show();
+                binding.progressBar.setVisibility(View.GONE);
+                return; // Hatalı giriş durumunda işlemi sonlandır
+            } else if (!sifre.equals(sifreTekrar)) {
+                Snackbar.make(getView(),"Şifreler aynı olmalıdır",Snackbar.LENGTH_SHORT).show();
+                binding.progressBar.setVisibility(View.GONE);
+                return; // Hatalı giriş durumunda işlemi sonlandır
+            }
             if (id==R.id.radioButtonErkek){
                 cinsiyet="Erkek";
             }else{
@@ -75,51 +88,39 @@ public class KayitOlFragment extends Fragment {
             int currentYear = cal.get(Calendar.YEAR);
             int kYas=currentYear-Integer.parseInt(dogumTarihi);
             yas=String.valueOf(kYas);
-
-            if(adSoyad.equals("")||kullaniciAdi.equals("")||dogumTarihi.equals("")
-                    ||binding.radioGroupCinsiyet.getCheckedRadioButtonId() == -1
-                    ||email.equals("")||sifre.equals("")||sifreTekrar.equals("")){
-                Snackbar.make(getView(),"Tüm alanları doldurun",Snackbar.LENGTH_SHORT).show();
-                binding.progressBar.setVisibility(View.GONE);
-            } else if (!sifre.equals(sifreTekrar)) {
-                Snackbar.make(getView(),"Şifreler aynı olmalıdır",Snackbar.LENGTH_SHORT).show();
-                binding.progressBar.setVisibility(View.GONE);
-            }
-            else{
-                CollectionReference reference=firestore.collection("kullanicilar");
-                Query query=reference.whereEqualTo("kullaniciAdi",kullaniciAdi);
-                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            if (task.getResult().isEmpty()){
-                                kullaniciyiKaydet(adSoyad,email,sifre,view);
-                                binding.progressBar.setVisibility(View.GONE);
-                            }
-                            else{
-                                Snackbar.make(view, "Bu kullanıcı adı daha önceden alınmış", Snackbar.LENGTH_SHORT).show();
-                                binding.progressBar.setVisibility(View.GONE);
-                            }
-                        }
-                        else{
-                            Snackbar.make(view, "Sorgu hatası: " + task.getException().getLocalizedMessage(), Snackbar.LENGTH_SHORT).show();
+            // Kullanıcı adının mevcut olup olmadığını kontrol et
+            CollectionReference reference = firestore.collection("kullanicilar");
+            Query query = reference.whereEqualTo("kullaniciAdi", kullaniciAdi);
+            query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        if (task.getResult().isEmpty()) {
+                            // Kullanıcı adı mevcut değilse kayıt işlemine devam et
+                            kullaniciyiKaydet(adSoyad, email, sifre,yas,cinsiyet,kullaniciAdi,dogumTarihi, view);
+                        } else {
+                            // Kullanıcı adı mevcutsa kullanıcıya bilgi ver
+                            Snackbar.make(getView(), "Bu kullanıcı adı daha önceden alınmış", Snackbar.LENGTH_SHORT).show();
                             binding.progressBar.setVisibility(View.GONE);
-
                         }
+                    } else {
+                        Snackbar.make(getView(), "Sorgu hatası: " + task.getException().getLocalizedMessage(), Snackbar.LENGTH_SHORT).show();
+                        binding.progressBar.setVisibility(View.GONE);
                     }
-                });
-            }
+                }
+            });
         });
     }
 
-    private void kullaniciyiKaydet(String adSoyad,String email, String sifre, View view) {
+
+    private void kullaniciyiKaydet(String adSoyad, String email, String sifre, String yas, String cinsiyet, String kullaniciAdi, String dogumTarihi, View view) {
         auth.createUserWithEmailAndPassword(email,sifre).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     FirebaseUser user=auth.getCurrentUser();//oluşturulan userı aldık, mail göndermek için
                     aktivasyonEmailiGonder(user,view);
-                    kullaniciyiFirestoreKaydet(adSoyad,email,sifre,kullaniciAdi,cinsiyet,yas,dogumTarihi);
+                    kullaniciyiFirestoreKaydet(adSoyad,email,sifre, kullaniciAdi,cinsiyet,yas,dogumTarihi);
 
                 }else{
                     Exception exception = task.getException();
@@ -172,6 +173,8 @@ public class KayitOlFragment extends Fragment {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(getContext(),"Email gönderildi, hesabınızı doğrulayın.",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getContext(), MainActivity.class);
+                startActivity(intent);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

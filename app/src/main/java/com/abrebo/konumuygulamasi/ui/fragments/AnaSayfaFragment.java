@@ -36,11 +36,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -52,9 +55,7 @@ public class AnaSayfaFragment extends Fragment{
     private FirebaseAuth auth;
     private ArrayList<Etkinlik> etkinlikList;
     private EtkinlikAdapter adapter;
-    private String kullaniciSehir="";
-    private Boolean oneri;
-    private ActivityResultLauncher<String> permissionLauncher;
+   ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,7 +66,7 @@ public class AnaSayfaFragment extends Fragment{
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         etkinlikList=new ArrayList<>();
-        getKullaniciOneriDurum();
+        getData();
 
 
         binding.recyclerViewEtkinliklerAnaSayfa.setLayoutManager(new GridLayoutManager(getContext(),2));
@@ -78,154 +79,55 @@ public class AnaSayfaFragment extends Fragment{
 
 
 
-
-
-
         return binding.getRoot();
     }
-
-
-
-    private void getKullaniciOneriDurum() {
-        db.collection("kullanicilar")
-                .whereEqualTo("email", auth.getCurrentUser().getEmail())
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (DocumentSnapshot document : task.getResult()) {
-                            Boolean oneriDurumu = document.getBoolean("oneri_durum");
-                            kullaniciSehir=document.getString("konum");
-                            if (oneriDurumu != null && oneriDurumu) {
-                                oneri = true;
-                            } else {
-                                oneri = false;
-                            }
-                            // Öneri durumu alındıktan sonra gerekli işlemleri yapmak için
-                            if (oneri) {
-                                getData(true);
-                            } else {
-                                getData(false);
-                            }
-                        }
-                    }
-                });
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        BottomAppBar bottomAppBar = requireActivity().findViewById(R.id.bottomAppBar);
+        FloatingActionButton fab=requireActivity().findViewById(R.id.fab);
+        bottomAppBar.setVisibility(View.VISIBLE);
+        fab.setVisibility(View.VISIBLE);
     }
-    private void getData(Boolean kisilikVarMi) {
-        if (kisilikVarMi){
-            getKullaniciKisilik(db, auth, new AnaSayfaFragment.KisilikCallback() {
-                @Override
-                public void onKisilikReceived(String kisilikValue) {
-                        db.collection("etkinlikler")
-                                .whereEqualTo("kisilik",kisilikValue)
-                                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                                    @SuppressLint("NotifyDataSetChanged")
-                                    @Override
-                                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                                        if (error != null) {
-                                            Toast.makeText(getContext(), error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                                            return;
-                                        }
-                                        etkinlikList.clear();
-
-                                        if (value != null) {
-                                            for (DocumentSnapshot documentSnapshot : value.getDocuments()) {
-                                                Map<String, Object> data = documentSnapshot.getData();
-                                                String foto=(String) data.get("foto");
-                                                String foto2=(String) data.get("foto2");
-                                                String foto3=(String) data.get("foto3");
-                                                String foto4=(String) data.get("foto4");
-                                                String ad = (String) data.get("ad");
-                                                String tur = (String) data.get("tur");
-                                                String konum = (String) data.get("konum");
-                                                String aciklama = (String) data.get("aciklama");
-                                                String enlem = (String) data.get("enlem");
-                                                String boylam = (String) data.get("boylam");
-                                                String email = (String) data.get("email");
-                                                String paylasildi_mi = (String) data.get("paylasildi_mi");
-                                                String tarih = (String) data.get("tarih");
-                                                String saat = (String) data.get("saat");
-                                                String uuid = (String) data.get("uuid");
-                                                String docID=documentSnapshot.getId();
-                                                Etkinlik etkinlik=new Etkinlik(foto,foto2,foto3,foto4,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
-                                                        tarih,saat,docID,uuid);
-                                                etkinlikList.add(etkinlik);
-                                            }
-                                            adapter.notifyDataSetChanged();
-                                        }
-                                    }
-                                });
-                    }
-
-            });
-        }else{
-            getKullaniciKisilik(db, auth, new AnaSayfaFragment.KisilikCallback() {
-                @Override
-                public void onKisilikReceived(String kisilikValue) {
-                        db.collection("etkinlikler")
-                                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                                    @SuppressLint("NotifyDataSetChanged")
-                                    @Override
-                                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                                        if (error != null) {
-                                            Toast.makeText(getContext(), error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                                            return;
-                                        }
-                                        etkinlikList.clear();
-
-                                        if (value != null) {
-                                            for (DocumentSnapshot documentSnapshot : value.getDocuments()) {
-                                                Map<String, Object> data = documentSnapshot.getData();
-                                                String foto=(String) data.get("foto");
-                                                String foto2=(String) data.get("foto2");
-                                                String foto3=(String) data.get("foto3");
-                                                String foto4=(String) data.get("foto4");
-                                                String ad = (String) data.get("ad");
-                                                String tur = (String) data.get("tur");
-                                                String konum = (String) data.get("konum");
-                                                String aciklama = (String) data.get("aciklama");
-                                                String enlem = (String) data.get("enlem");
-                                                String boylam = (String) data.get("boylam");
-                                                String email = (String) data.get("email");
-                                                String paylasildi_mi = (String) data.get("paylasildi_mi");
-                                                String tarih = (String) data.get("tarih");
-                                                String saat = (String) data.get("saat");
-                                                String uuid = (String) data.get("uuid");
-                                                String docID=documentSnapshot.getId();
-                                                Etkinlik etkinlik=new Etkinlik(foto,foto2,foto3,foto4,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
-                                                        tarih,saat,docID,uuid);
-                                                etkinlikList.add(etkinlik);
-                                            }
-                                            adapter.notifyDataSetChanged();
-                                        }
-                                    }
-                                });
-                    }
-            });
-        }
-
-    }
-    private void getKullaniciKisilik(FirebaseFirestore firestore, FirebaseAuth auth, AnaSayfaFragment.KisilikCallback callback) {
-        String currentUserEmail = auth.getCurrentUser().getEmail();
-        firestore.collection("kullanicilar").whereEqualTo("email", currentUserEmail)
+    private void getData() {
+        db.collection("etkinlikler")
+                .orderBy("tarih", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if (error != null) {
                             Toast.makeText(getContext(), error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                             return;
                         }
+                        etkinlikList.clear();
                         if (value != null) {
                             for (DocumentSnapshot documentSnapshot : value.getDocuments()) {
                                 Map<String, Object> data = documentSnapshot.getData();
-                                String kisilik = (String) data.get("kisilik");
-                                callback.onKisilikReceived(kisilik);
+                                String foto=(String) data.get("foto");
+                                String foto2=(String) data.get("foto2");
+                                String foto3=(String) data.get("foto3");
+                                String foto4=(String) data.get("foto4");
+                                String ad = (String) data.get("ad");
+                                String tur = (String) data.get("tur");
+                                String konum = (String) data.get("konum");
+                                String aciklama = (String) data.get("aciklama");
+                                String enlem = (String) data.get("enlem");
+                                String boylam = (String) data.get("boylam");
+                                String email = (String) data.get("email");
+                                String paylasildi_mi = (String) data.get("paylasildi_mi");
+                                String tarih = (String) data.get("tarih");
+                                String saat = (String) data.get("saat");
+                                String uuid = (String) data.get("uuid");
+                                String docID=documentSnapshot.getId();
+                                Etkinlik etkinlik=new Etkinlik(foto,foto2,foto3,foto4,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
+                                        tarih,saat,docID,uuid);
+                                etkinlikList.add(etkinlik);
                             }
+                            adapter.notifyDataSetChanged();
                         }
                     }
                 });
-    }
-    public interface KisilikCallback {
-        void onKisilikReceived(String kisilikValue);
     }
     private void geriTusuIslemleri() {
         OnBackPressedCallback backButtonCallback = new OnBackPressedCallback(true) {

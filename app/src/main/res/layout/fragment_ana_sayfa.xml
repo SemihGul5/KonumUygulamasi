@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/pacifico"
-        android:text="@string/etkinlik_paylas"
+        android:text="Etkinlik Davet"
         android:textColor="@color/white"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="@+id/materialToolbar"

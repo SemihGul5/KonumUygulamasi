@@ -1,7 +1,9 @@
 package com.abrebo.konumuygulamasi.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.abrebo.konumuygulamasi.AnaSayfaMainActivity;
 import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.data.models.Etkinlik;
 import com.abrebo.konumuygulamasi.data.models.Mesaj;
@@ -82,7 +85,7 @@ public class MesajFragment extends Fragment {
             mesajGonder();
         });
 
-
+        geriTusuIslemleri();
 
 
 
@@ -223,5 +226,15 @@ public class MesajFragment extends Fragment {
     }
     interface AdCallback {
         void onAdReceived(String adValue);
+    }
+    private void geriTusuIslemleri() {
+        OnBackPressedCallback backButtonCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent=new Intent(getContext(), AnaSayfaMainActivity.class);
+                startActivity(intent);
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), backButtonCallback);
     }
 }
