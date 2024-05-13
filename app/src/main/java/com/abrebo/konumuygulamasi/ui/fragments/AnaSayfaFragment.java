@@ -91,7 +91,7 @@ public class AnaSayfaFragment extends Fragment{
     }
     private void getData() {
         db.collection("etkinlikler")
-                .orderBy("tarih", Query.Direction.DESCENDING)
+                .orderBy("tarih2", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @SuppressLint("NotifyDataSetChanged")
                     @Override

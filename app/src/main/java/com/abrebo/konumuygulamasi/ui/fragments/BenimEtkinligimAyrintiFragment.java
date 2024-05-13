@@ -40,6 +40,7 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -49,8 +50,10 @@ import com.squareup.picasso.Picasso;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
@@ -157,8 +160,9 @@ public class BenimEtkinligimAyrintiFragment extends Fragment {
             timePicker.addOnPositiveButtonClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    binding.textViewSaatBenim.setText(timePicker.getHour()+" : "+timePicker.getMinute());
-                    saat=timePicker.getHour()+" : "+timePicker.getMinute();
+                    String formattedMinute = String.format("%02d", timePicker.getMinute());
+                    binding.textViewSaatBenim.setText(timePicker.getHour() + ":" + formattedMinute);
+                    saat = timePicker.getHour() + ":" + formattedMinute;
                 }
             });
         });
@@ -289,6 +293,17 @@ public class BenimEtkinligimAyrintiFragment extends Fragment {
             updatedData.put("aciklama", binding.editTextEtkinlikAciklamaBenim.getText().toString());
             updatedData.put("tarih", tarih);
             updatedData.put("saat", saat);
+            // Tarih ve saat bilgisini Firestore'a kaydetmek için birleştir
+            String dateTimeString = tarih + " " + saat.replace(" ", ""); // Boşluğu kaldır
+            SimpleDateFormat dateTimeFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+            try {
+                Date date = dateTimeFormat.parse(dateTimeString);
+                Timestamp timestamp = new Timestamp(date);
+                // Firestore'a timestamp olarak kaydet
+                updatedData.put("tarih2", timestamp);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             if (!foto.equals("null")) {
                 updatedData.put("foto", foto);
             }

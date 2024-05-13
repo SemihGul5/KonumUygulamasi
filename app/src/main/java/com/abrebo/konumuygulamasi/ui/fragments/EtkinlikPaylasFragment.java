@@ -36,6 +36,7 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FieldValue;
@@ -46,8 +47,11 @@ import com.google.firebase.storage.StorageReference;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.UUID;
@@ -123,35 +127,37 @@ public class EtkinlikPaylasFragment extends Fragment {
         });
 
 
-        //tarih butonu tıklanması
+// Tarih butonu tıklanması
         binding.buttonTarih.setOnClickListener(view -> {
-            MaterialDatePicker datePicker= MaterialDatePicker.Builder.datePicker()
+            MaterialDatePicker datePicker = MaterialDatePicker.Builder.datePicker()
                     .setTitleText("Tarih Seç")
                     .build();
-            datePicker.show(getChildFragmentManager(),"Tarih");
+            datePicker.show(getChildFragmentManager(), "Tarih");
 
             datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
                 @Override
                 public void onPositiveButtonClick(Object selection) {
-                    SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                    tarih=dateFormat.format(selection);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    tarih = dateFormat.format(selection);
                     binding.textViewTarih.setText(tarih);
                 }
             });
         });
 
-        //saat butonuna tıklanması
+// Saat butonuna tıklanması
         binding.buttonSaat.setOnClickListener(view -> {
-            MaterialTimePicker timePicker=new MaterialTimePicker.Builder().setTitleText("Saat Seç")
+            MaterialTimePicker timePicker = new MaterialTimePicker.Builder()
+                    .setTitleText("Saat Seç")
                     .setTimeFormat(TimeFormat.CLOCK_24H)
                     .build();
-            timePicker.show(getChildFragmentManager(),"Saat");
+            timePicker.show(getChildFragmentManager(), "Saat");
 
             timePicker.addOnPositiveButtonClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    binding.textViewSaat.setText(timePicker.getHour()+" : "+timePicker.getMinute());
-                    saat=timePicker.getHour()+" : "+timePicker.getMinute();
+                    String formattedMinute = String.format("%02d", timePicker.getMinute());
+                    binding.textViewSaat.setText(timePicker.getHour() + ":" + formattedMinute);
+                    saat = timePicker.getHour() + ":" + formattedMinute;
                 }
             });
         });
@@ -273,6 +279,19 @@ public class EtkinlikPaylasFragment extends Fragment {
                     postData.put("boylam",longitude);
                     postData.put("tarih",tarih);
                     postData.put("saat",saat);
+                    // Tarih ve saat bilgisini Firestore'a kaydetmek için birleştir
+                    String dateTimeString = tarih + " " + saat.replace(" ", ""); // Boşluğu kaldır
+                    SimpleDateFormat dateTimeFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+                    try {
+                        Date date = dateTimeFormat.parse(dateTimeString);
+                        Timestamp timestamp = new Timestamp(date);
+                        // Firestore'a timestamp olarak kaydet
+                        postData.put("tarih2", timestamp);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+
                     UUID uuidEtkinlik = UUID.randomUUID();
                     String uuidEtkinliks=String.valueOf(uuidEtkinlik);
                     postData.put("uuid",uuidEtkinliks);
