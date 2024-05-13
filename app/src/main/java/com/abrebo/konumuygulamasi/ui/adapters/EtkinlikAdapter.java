@@ -1,15 +1,19 @@
 package com.abrebo.konumuygulamasi.ui.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.data.models.Etkinlik;
 import com.abrebo.konumuygulamasi.databinding.EtkinlikCardBinding;
 import com.abrebo.konumuygulamasi.ui.fragments.AnaSayfaFragmentDirections;
@@ -20,7 +24,6 @@ import com.abrebo.konumuygulamasi.ui.fragments.FavorilerimFragmentDirections;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +53,7 @@ public class EtkinlikAdapter extends RecyclerView.Adapter<EtkinlikAdapter.Etkinl
         return new EtkinlikCardHolder(binding);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull EtkinlikCardHolder holder, int position) {
         //Karta foto, ad ve konum yazılması
@@ -78,12 +82,14 @@ public class EtkinlikAdapter extends RecyclerView.Adapter<EtkinlikAdapter.Etkinl
             SlideModel slideModel4 = new SlideModel(foto4, ScaleTypes.CENTER_INSIDE);
             slideModels.add(slideModel4);
         }
-
+        holder.binding.textViewTarihVeSaat.setText(etkinlik.getTarih()+" "+etkinlik.getSaat());
+        holder.binding.textViewEtkinlikTuru.setText("Etkinlik Türü: "+etkinlik.getTur());
         holder.binding.imageViewCardEtkinlikFoto.setImageList(slideModels,ScaleTypes.CENTER_INSIDE);
         holder.binding.textViewCardEtkinlikAd.setText(etkinlik.getAd());
         holder.binding.textViewEtkinlikKonum.setText(etkinlik.getKonum());
-        holder.binding.textViewTarihVeSaat.setText(etkinlik.getTarih()+" "+etkinlik.getSaat());
-        holder.binding.textViewEtkinlikTuru.setText("Etkinlik Türü: "+etkinlik.getTur());
+
+
+
         // etkinlik kart tasarımına tıklandığında
         holder.binding.etkinlikCard.setOnClickListener(view -> {
             gitAyrinti(view,etkinlik);

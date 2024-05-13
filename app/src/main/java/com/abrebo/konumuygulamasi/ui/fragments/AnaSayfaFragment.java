@@ -123,6 +123,7 @@ public class AnaSayfaFragment extends Fragment{
                                 Etkinlik etkinlik=new Etkinlik(foto,foto2,foto3,foto4,ad,tur,konum,aciklama,enlem,boylam,email,paylasildi_mi,
                                         tarih,saat,docID,uuid);
                                 etkinlikList.add(etkinlik);
+
                             }
                             adapter.notifyDataSetChanged();
                         }
