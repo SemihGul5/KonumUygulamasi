@@ -17,6 +17,10 @@ import android.widget.Toast;
 
 import com.abrebo.konumuygulamasi.R;
 import com.abrebo.konumuygulamasi.databinding.FragmentBigFiveBinding;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -35,6 +39,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -192,13 +198,118 @@ public class BigFiveFragment extends Fragment {
                     });
                 } else {
                     // Request başarısız olduğunda yapılacak işlemler
+                    Snackbar.make(getView(),"Bu kez olmadı, tekrar deneyeceğiz. Lütfen bekleyiniz...",Snackbar.LENGTH_SHORT).show();
+                    tekrarDene();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }).start();
     }
+    private void tekrarDene() {
+        StringRequest stringRequest=new StringRequest(com.android.volley.Request.Method.POST, "https://bitirme-proje-309030c9a303.herokuapp.com/predict", new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    String data=jsonObject.getString("data");
+                    String kisi="";
+                    if (data.equals("0")){
+                        kisi="Açıklık";
+                    } else if (data.equals("1")) {
+                        kisi="Sorumluluk";
+                    } else if (data.equals("2")) {
+                        kisi="Dışa Dönüklük";
+                    } else if (data.equals("3")) {
+                        kisi="Uyum";
+                    } else if (data.equals("4")) {
+                        kisi="Duyarlılık";
+                    }  else if (data.equals("5")) {
+                        kisi="Açıklık";
+                    }
+                    binding.anketDurumText.setText(kisi+" : "+getKisilikAciklama(kisi,kisi));
+                    binding.anketDurumText.setTextColor(ContextCompat.getColor(requireContext(), R.color.mavi));
 
+                    kisilikDurumGuncelle(kisi,firestore);
+                    binding.kisilikTestButton.setEnabled(false);
+                    Toast.makeText(getContext(), "Kişilik analizi tamamlandı", Toast.LENGTH_SHORT).show();
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params=new HashMap<String, String>();
+                params.put("EXT1",String.valueOf(binding.ext1.getProgress()));
+                params.put("EXT2",String.valueOf(binding.ext2.getProgress()));
+                params.put("EXT3",String.valueOf(binding.ext3.getProgress()));
+                params.put("EXT4",String.valueOf(binding.ext4.getProgress()));
+                params.put("EXT5",String.valueOf(binding.ext5.getProgress()));
+                params.put("EXT6",String.valueOf(binding.ext6.getProgress()));
+                params.put("EXT7",String.valueOf(binding.ext7.getProgress()));
+                params.put("EXT8",String.valueOf(binding.ext8.getProgress()));
+                params.put("EXT9",String.valueOf(binding.ext9.getProgress()));
+                params.put("EXT10",String.valueOf(binding.ext10.getProgress()));
+
+                params.put("EST1",String.valueOf(binding.EST1.getProgress()));
+                params.put("EST2",String.valueOf(binding.EST2.getProgress()));
+                params.put("EST3",String.valueOf(binding.EST3.getProgress()));
+                params.put("EST4",String.valueOf(binding.EST4.getProgress()));
+                params.put("EST5",String.valueOf(binding.EST5.getProgress()));
+                params.put("EST6",String.valueOf(binding.EST6.getProgress()));
+                params.put("EST7",String.valueOf(binding.EST7.getProgress()));
+                params.put("EST8",String.valueOf(binding.EST8.getProgress()));
+                params.put("EST9",String.valueOf(binding.EST9.getProgress()));
+                params.put("EST10",String.valueOf(binding.EST10.getProgress()));
+
+                // AGR parametreleri
+                params.put("AGR1", String.valueOf(binding.agr1.getProgress()));
+                params.put("AGR2", String.valueOf(binding.agr2.getProgress()));
+                params.put("AGR3", String.valueOf(binding.agr3.getProgress()));
+                params.put("AGR4", String.valueOf(binding.agr4.getProgress()));
+                params.put("AGR5", String.valueOf(binding.agr5.getProgress()));
+                params.put("AGR6", String.valueOf(binding.agr6.getProgress()));
+                params.put("AGR7", String.valueOf(binding.agr7.getProgress()));
+                params.put("AGR8", String.valueOf(binding.agr8.getProgress()));
+                params.put("AGR9", String.valueOf(binding.agr9.getProgress()));
+                params.put("AGR10", String.valueOf(binding.agr10.getProgress()));
+                // CSN parametreleri
+                params.put("CSN1", String.valueOf(binding.csn1.getProgress()));
+                params.put("CSN2", String.valueOf(binding.csn2.getProgress()));
+                params.put("CSN3", String.valueOf(binding.csn3.getProgress()));
+                params.put("CSN4", String.valueOf(binding.csn4.getProgress()));
+                params.put("CSN5", String.valueOf(binding.csn5.getProgress()));
+                params.put("CSN6", String.valueOf(binding.csn6.getProgress()));
+                params.put("CSN7", String.valueOf(binding.csn7.getProgress()));
+                params.put("CSN8", String.valueOf(binding.csn8.getProgress()));
+                params.put("CSN9", String.valueOf(binding.csn9.getProgress()));
+                params.put("CSN10", String.valueOf(binding.csn10.getProgress()));
+                // OPN parametreleri
+                params.put("OPN1", String.valueOf(binding.opn1.getProgress()));
+                params.put("OPN2", String.valueOf(binding.opn2.getProgress()));
+                params.put("OPN3", String.valueOf(binding.opn3.getProgress()));
+                params.put("OPN4", String.valueOf(binding.opn4.getProgress()));
+                params.put("OPN5", String.valueOf(binding.opn5.getProgress()));
+                params.put("OPN6", String.valueOf(binding.opn6.getProgress()));
+                params.put("OPN7", String.valueOf(binding.opn7.getProgress()));
+                params.put("OPN8", String.valueOf(binding.opn8.getProgress()));
+                params.put("OPN9", String.valueOf(binding.opn9.getProgress()));
+                params.put("OPN10", String.valueOf(binding.opn10.getProgress()));
+
+                return params;
+            }
+        };
+        // İsteği Volley kuyruğuna ekleyin
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        queue.add(stringRequest);
+    }
     private void kisilikDurumGuncelle(String highestProbabilityTrait, FirebaseFirestore firestore) {
         Query query=firestore.collection("kullanicilar").whereEqualTo("email",auth.getCurrentUser().getEmail());
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

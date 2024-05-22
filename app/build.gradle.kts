@@ -66,5 +66,5 @@ dependencies {
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("com.airbnb.android:lottie:3.4.0")
-
+    implementation ("com.android.volley:volley:1.2.1")
 }

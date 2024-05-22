@@ -69,24 +69,24 @@ public class EtkinlikAyrintiFragment extends Fragment {
         foto4=etkinlik.getFoto4();
 
         slideModels=new ArrayList<>();
-        SlideModel slideModel1=new SlideModel(foto1, ScaleTypes.CENTER_INSIDE);
+        SlideModel slideModel1=new SlideModel(foto1, ScaleTypes.FIT);
         slideModels.add(slideModel1);
         if (!"null".equals(foto2)) {
-            SlideModel slideModel2 = new SlideModel(foto2, ScaleTypes.CENTER_INSIDE);
+            SlideModel slideModel2 = new SlideModel(foto2, ScaleTypes.FIT);
             slideModels.add(slideModel2);
         }
 
         if (!"null".equals(foto3)) {
-            SlideModel slideModel3 = new SlideModel(foto3, ScaleTypes.CENTER_INSIDE);
+            SlideModel slideModel3 = new SlideModel(foto3, ScaleTypes.FIT);
             slideModels.add(slideModel3);
         }
 
         if (!"null".equals(foto4)) {
-            SlideModel slideModel4 = new SlideModel(foto4, ScaleTypes.CENTER_INSIDE);
+            SlideModel slideModel4 = new SlideModel(foto4, ScaleTypes.FIT);
             slideModels.add(slideModel4);
         }
 
-        binding.imageViewEtkinlikAyrintiFoto.setImageList(slideModels,ScaleTypes.CENTER_INSIDE);
+        binding.imageViewEtkinlikAyrintiFoto.setImageList(slideModels,ScaleTypes.FIT);
 
         binding.etkinlikAyrintiAD.setText(etkinlik.getAd());
         binding.etkinlikAyrintiTarihSaat.setText(etkinlik.getTarih()+" "+etkinlik.getSaat());
