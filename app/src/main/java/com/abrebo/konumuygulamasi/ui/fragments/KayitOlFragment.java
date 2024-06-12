@@ -100,7 +100,8 @@ public class KayitOlFragment extends Fragment {
                             kullaniciyiKaydet(adSoyad, email, sifre,yas,cinsiyet,kullaniciAdi,dogumTarihi, view);
                         } else {
                             // Kullanıcı adı mevcutsa kullanıcıya bilgi ver
-                            Snackbar.make(getView(), "Bu kullanıcı adı daha önceden alınmış", Snackbar.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Bu kullanıcı adı daha önceden alınmış", Toast.LENGTH_SHORT).show();
+                            //Snackbar.make(getView(), "Bu kullanıcı adı daha önceden alınmış", Snackbar.LENGTH_SHORT).show();
                             binding.progressBar.setVisibility(View.GONE);
                         }
                     } else {
@@ -126,10 +127,12 @@ public class KayitOlFragment extends Fragment {
                     Exception exception = task.getException();
                     if (exception instanceof FirebaseAuthUserCollisionException) {
                         // E-posta zaten kayıtlı, kullanıcıyı bilgilendir veya işlem yap
-                        Snackbar.make(view,"E posta zaten kayıtlı",Snackbar.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "E posta zaten kayıtlı", Toast.LENGTH_SHORT).show();
+                        binding.progressBar.setVisibility(View.GONE);
+                       // Snackbar.make(view,"E posta zaten kayıtlı",Snackbar.LENGTH_SHORT).show();
                     } else {
                         // Diğer hataları işle
-                        Snackbar.make(view,exception.getLocalizedMessage(),Snackbar.LENGTH_SHORT).show();
+                       // Snackbar.make(view,exception.getLocalizedMessage(),Snackbar.LENGTH_SHORT).show();
                     }
                 }
             }
