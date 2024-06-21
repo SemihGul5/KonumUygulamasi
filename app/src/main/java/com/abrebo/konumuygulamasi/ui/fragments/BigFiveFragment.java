@@ -165,8 +165,8 @@ public class BigFiveFragment extends Fragment {
                 .url("https://big-five-personality-test.p.rapidapi.com/submit")
                 .post(body)
                 .addHeader("content-type", "application/json")
-                .addHeader("X-RapidAPI-Key", "a06be069a4mshbb12383355b49c0p123211jsn648cf1b824ba")
-                .addHeader("X-RapidAPI-Host", "big-five-personality-test.p.rapidapi.com")
+                .addHeader("X-RapidAPI-Key", "")
+                .addHeader("X-RapidAPI-Host", "")
                 .build();
 
         // Request'i gönderiyoruz
