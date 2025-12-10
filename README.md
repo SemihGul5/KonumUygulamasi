@@ -28,3 +28,6 @@ Proje, bir mobil uygulama üzerinden gerçekleştirilecek. Bu uygulama, kullanı
 ## Kullanım Videosu
 https://github.com/SemihGul5/KonumUygulamasi/assets/133046330/fefccd4b-f8ff-4f6a-898e-c5d36da4593d
 
+## Developers
+* Semih Gül
+* Enes Talha Işık
